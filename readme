@@ -1,0 +1,27 @@
+Dear Colleagues: 
+
+The final publication layout will be produced by using raa.cls. 
+Therefore, we strongly encourage you to prepare your LaTeX manuscript 
+with this class file. Please unpack raa-package.tar.gz, it includes 
+
+raa.cls        ---- RAA macro class file for LaTeX2e 
+sample.tex     ---- a sample file using raa.cls (LaTeX source) 
+sample.ps      ---- the PS file created by sample.tex in referee format  
+sample.pdf     ---- the PDF file created by sample.tex in referee format  
+readme         ---- this file  
+f?.eps         ---- three demo figures used in the LaTeX template source
+sample2.tex    ---- a sample file for using raa.bst
+sample2_fig?.eps -- two demo figures used in sample2.tex
+sample2.pdf    ---- the PDF file created by sample.tex in referee format
+sample2.bbl    ---- bibliography file using by sample2.tex
+bibtex.bib     ---- an example for bibtex file
+
+natbib.sty     ---- This package reimplements the LaTeX \cite command
+natnotes.pdf   ---- Brief reference sheet for Natbib (pdf)
+raa.bst        ---- Bibliography style file 
+
+Hope you enjoy the use of this macro. Your suggestions and comments are 
+highly welcome. Thanks.
+
+Editorial Office
+E-mail:  raa@raa-journal.org

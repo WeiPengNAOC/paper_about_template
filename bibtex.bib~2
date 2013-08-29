@@ -1,0 +1,405 @@
+@comment{x-kbibtex-personnameformatting=<%f ><%l><, %s>}
+
+@article{ahn2012ninth,
+	author = "Christopher P Ahn and Rachael Alexandroff and Carlos Allende Prieto and Scott F Anderson and Timothy Anderton and Brett H Andrews and {\'E}ric Aubourg and Stephen Bailey and Eduardo Balbinot and Rory Barnes and others",
+	journal = "The Astrophysical Journal Supplement Series",
+	number = "2",
+	pages = "21",
+	publisher = "IOP Publishing",
+	title = "{The Ninth Data Release of the Sloan Digital Sky Survey: First Spectroscopic Data from the SDSS-III Baryon Oscillation Spectroscopic Survey}",
+	volume = "203",
+	year = "2012"
+}
+
+@article{aihara2011eighth,
+	author = "Hiroaki Aihara and Carlos Allende Prieto and Deokkeun An and Scott F Anderson and {\'E}ric Aubourg and Eduardo Balbinot and Timothy C Beers and Andreas A Berlind and Steven J Bickerton and Dmitry Bizyaev and others",
+	journal = "The Astrophysical Journal Supplement Series",
+	number = "2",
+	pages = "29",
+	publisher = "IOP Publishing",
+	title = "{The eighth data release of the Sloan Digital Sky Survey: first data from SDSS-III}",
+	volume = "193",
+	year = "2011"
+}
+
+@article{almeida2013automated,
+	author = "J S{\'a}nchez Almeida and C Allende Prieto",
+	journal = "The Astrophysical Journal",
+	number = "1",
+	pages = "50",
+	publisher = "IOP Publishing",
+	title = "{Automated unsupervised classification of the Sloan Digital Sky Survey stellar spectra using k-means clustering}",
+	volume = "763",
+	year = "2013"
+}
+
+@article{bailer1998automated,
+	author = "Coryn AL Bailer-Jones and Mike Irwin and Ted Von Hippel",
+	journal = "Monthly Notices of the Royal Astronomical Society",
+	number = "2",
+	pages = "361--377",
+	publisher = "Wiley Online Library",
+	title = "{Automated classification of stellar spectra---II. Two-dimensional classification with neural networks and principal components analysis}",
+	volume = "298",
+	year = "1998"
+}
+
+@article{bolton2012spectral,
+	author = "Adam S Bolton and David J Schlegel and {\'E}ric Aubourg and Stephen Bailey and Vaishali Bhardwaj and Joel R Brownstein and Scott Burles and Yan-Mei Chen and Kyle Dawson and Daniel J Eisenstein and others",
+	journal = "The Astronomical Journal",
+	number = "5",
+	pages = "144",
+	publisher = "IOP Publishing",
+	title = "{Spectral Classification and Redshift Measurement for the SDSS-III Baryon Oscillation Spectroscopic Survey}",
+	volume = "144",
+	year = "2012"
+}
+
+@article{carlin2012algorithm,
+	author = "Jeffrey L Carlin and S{\'e}bastien L{\'e}pine and Heidi Jo Newberg and Li-Cai Deng and Timothy C Beers and Yu-Qin Chen and Norbert Christlieb and Xiao-Ting Fu and Shuang Gao and Carl J Grillmair and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "7",
+	pages = "755",
+	publisher = "IOP Publishing",
+	title = "{An algorithm for preferential selection of spectroscopic targets in LEGUE}",
+	volume = "12",
+	year = "2012"
+}
+
+@inproceedings{carlin2011comparison,
+	author = "Jeffrey L Carlin and HJ Newberg and TC Beers and YS Lee and B Yanny and L Deng and H Zhang and G Zhao and Y Zhang and A Luo and others",
+	booktitle = "{Bulletin of the American Astronomical Society}",
+	pages = "33413",
+	title = "{Comparison of Derived Stellar Parameters for LAMOST and SEGUE Spectra}",
+	volume = "43",
+	year = "2011"
+}
+
+@article{chen2012legue,
+	author = "Li Chen and Jin-Liang Hou and Jin-Cheng Yu and Chao Liu and Li-Cai Deng and Heidi Jo Newberg and Jeffrey L Carlin and Fan Yang and Yue-Yang Zhang and Shi-Yin Shen and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "7",
+	pages = "805",
+	publisher = "IOP Publishing",
+	title = "{The LEGUE disk targets for LAMOST's pilot survey}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{cui2012large,
+	author = "Xiang-Qun Cui and Yong-Heng Zhao and Yao-Quan Chu and Guo-Ping Li and Qi Li and Li-Ping Zhang and Hong-Jun Su and Zheng-Qiu Yao and Ya-Nan Wang and Xiao-Zheng Xing and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "9",
+	pages = "1197",
+	publisher = "IOP Publishing",
+	title = "{The Large Sky Area Multi-Object Fiber Spectroscopic Telescope (LAMOST)}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{deng2012lamost,
+	author = "Li-Cai Deng and Heidi Jo Newberg and Chao Liu and Jeffrey L Carlin and Timothy C Beers and Li Chen and Yu-Qin Chen and Norbert Christlieb and Carl J Grillmair and Puragra Guhathakurta and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "7",
+	pages = "735",
+	publisher = "IOP Publishing",
+	title = "{LAMOST Experiment for Galactic Understanding and Exploration (LEGUE)---The survey's science plan}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{eisenstein2011sdss,
+	author = "Daniel J Eisenstein and David H Weinberg and Eric Agol and Hiroaki Aihara and Carlos Allende Prieto and Scott F Anderson and James A Arns and {\'E}ric Aubourg and Stephen Bailey and Eduardo Balbinot and others",
+	journal = "The Astronomical Journal",
+	number = "3",
+	pages = "72",
+	publisher = "IOP Publishing",
+	title = "{Sdss-iii: Massive spectroscopic surveys of the distant universe, the milky way, and extra-solar planetary systems}",
+	volume = "142",
+	year = "2011"
+}
+
+@article{glazebrook1998automatic,
+	author = "Karl Glazebrook and Alison R Offer and Kathryn Deeley",
+	journal = "The Astrophysical Journal",
+	number = "1",
+	pages = "98",
+	publisher = "IOP Publishing",
+	title = "{Automatic redshift determination by use of principal component analysis. I. Fundamentals}",
+	volume = "492",
+	year = "1998"
+}
+
+@article{ivezic2008milky,
+	author = "\v{Z}eljko Ivezi{\'c} and Branimir Sesar and Mario Juri{\'c} and Nicholas Bond and Julianne Dalcanton and Constance M Rockosi and Brian Yanny and Heidi J Newberg and Timothy C Beers and Carlos Allende Prieto and others",
+	journal = "The Astrophysical Journal",
+	number = "1",
+	pages = "287",
+	publisher = "IOP Publishing",
+	title = "{The Milky Way Tomography with SDSS. II. Stellar Metallicity}",
+	volume = "684",
+	year = "2008"
+}
+
+@article{jiang2013data,
+	author = "Bin Jiang and Ali Luo and Yongheng Zhao and Peng Wei",
+	journal = "Monthly Notices of the Royal Astronomical Society",
+	number = "2",
+	pages = "986--995",
+	publisher = "Oxford University Press",
+	title = "{Data mining for cataclysmic variables in the Large Sky Area Multi-Object Fibre Spectroscopic Telescope archive}",
+	volume = "430",
+	year = "2013"
+}
+
+@article{lee2008segue,
+	author = "Young Sun Lee and Timothy C Beers and Thirupathi Sivarani and Carlos Allende Prieto and Lars Koesterke and Ronald Wilhelm and Paola Re Fiorentin and Coryn AL Bailer-Jones and John E Norris and Constance M Rockosi and others",
+	journal = "The Astronomical Journal",
+	number = "5",
+	pages = "2022",
+	publisher = "IOP Publishing",
+	title = "{The segue stellar parameter pipeline. i. description and comparison of individual methods}",
+	volume = "136",
+	year = "2008"
+}
+
+@inproceedings{luo2008automated,
+	author = "A-Li Luo and Yue Wu and Jingkun Zhao and Gang Zhao",
+	booktitle = "{Proc. of SPIE Vol}",
+	pages = "701935--1",
+	title = "{Automated stellar spectral analysis software for survey spectra}",
+	volume = "7019",
+	year = "2008"
+}
+
+@article{luo2012data,
+	author = "A-Li Luo and Hao-Tong Zhang and Yong-Heng Zhao and Gang Zhao and Xiang-Qun Cui and Guo-Ping Li and Yao-Quan Chu and Jian-Rong Shi and Gang Wang and Jian-Nan Zhang and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "9",
+	pages = "1243",
+	publisher = "IOP Publishing",
+	title = "{Data release of the LAMOST pilot survey}",
+	volume = "12",
+	year = "2012"
+}
+
+@inproceedings{luo2004design,
+	author = "A-Li Luo and Yan-Xia Zhang and Yong-Heng Zhao",
+	booktitle = "{Astronomical Telescopes and Instrumentation}",
+	organization = "International Society for Optics and Photonics",
+	pages = "756--764",
+	title = "{Design and implementation of the spectra reduction and analysis software for LAMOST telescope}",
+	year = "2004"
+}
+
+@article{mcgurk2010principal,
+	author = "Rosalie C McGurk and Amy E Kimball and \v{Z}eljko Ivezi{\'c}",
+	journal = "The Astronomical Journal",
+	number = "3",
+	pages = "1261",
+	publisher = "IOP Publishing",
+	title = "{Principal Component Analysis of Sloan Digital Sky Survey Stellar Spectra}",
+	volume = "139",
+	year = "2010"
+}
+
+@article{song2012relative,
+	author = "Yi-Han Song and A-Li Luo and Georges Comte and Zhong-Rui Bai and Jian-Nan Zhang and Wei Du and Hao-Tong Zhang and Jian-Jun Chen and Fang Zuo and Yong-Heng Zhao",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "4",
+	pages = "453",
+	publisher = "IOP Publishing",
+	title = "{Relative flux calibration for the Guoshoujing Telescope (LAMOST)}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{tu2010method,
+	author = "LiangPing Tu and ALi Luo and FuChao Wu and YongHeng Zhao",
+	journal = "Science China Physics, Mechanics and Astronomy",
+	number = "10",
+	pages = "1928--1938",
+	publisher = "Springer",
+	title = "{A method of searching for supernova candidates from massive galaxy spectra}",
+	volume = "53",
+	year = "2010"
+}
+
+@article{tu2009new,
+	author = "Liang-Ping Tu and A-Li Luo and Fu-Chao Wu and Chao Wu and Yong-Heng Zhao",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "6",
+	pages = "635",
+	publisher = "IOP Publishing",
+	title = "{New supernova candidates from the SDSS-DR7 spectral survey}",
+	volume = "9",
+	year = "2009"
+}
+
+@inproceedings{wang2010calibration,
+	author = "FF Wang and AL Luo and YH Zhao",
+	booktitle = "{SPIE Astronomical Telescopes and Instrumentation: Observational Frontiers of Astronomy for the New Decade}",
+	organization = "International Society for Optics and Photonics",
+	pages = "774031--774031",
+	title = "{Calibration of LAMOST spectral analysis}",
+	year = "2010"
+}
+
+@article{wei2013mining,
+	author = "Peng Wei and Ali Luo and Yinbi Li and Jingchang Pan and Liangping Tu and Bin Jiang and Xiao Kong and Zhixin Shi and Zhenping Yi and Fengfei Wang and others",
+	journal = "Monthly Notices of the Royal Astronomical Society",
+	number = "2",
+	pages = "1800--1811",
+	publisher = "Oxford University Press",
+	title = "{Mining unusual and rare stellar spectra from large spectroscopic survey data sets using the outlier-detection method}",
+	volume = "431",
+	year = "2013"
+}
+
+@article{whitney1983principal,
+	author = "CA Whitney",
+	journal = "Astronomy and Astrophysics Supplement Series",
+	pages = "443--461",
+	title = "{Principal components analysis of spectral data. I-Methodology for spectral classification}",
+	volume = "51",
+	year = "1983"
+}
+
+@article{wu2011automatic,
+	author = "Yue Wu and A-Li Luo and Hai-Ning Li and Jian-Rong Shi and Philippe Prugniel and Yan-Chun Liang and Yong-Heng Zhao and Jian-Nan Zhang and Zhong-Rui Bai and Peng Wei and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "8",
+	pages = "924",
+	publisher = "IOP Publishing",
+	title = "{Automatic determination of stellar atmospheric parameters and construction of stellar spectral templates of the Guoshoujing Telescope (LAMOST)}",
+	volume = "11",
+	year = "2011"
+}
+
+@article{yang2012legue,
+	author = "Fan Yang and Jeffrey L Carlin and Chao Liu and Yue-Yang Zhang and Shuang Gao and Yan Xu and Li-Cai Deng and Heidi Jo Newberg and S{\'e}bastien L{\'e}pine and Jin-Liang Hou and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "7",
+	pages = "781",
+	publisher = "IOP Publishing",
+	title = "{The LEGUE input catalog for dark night observing in the LAMOST pilot survey}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{yi2013m,
+	author = "ZP Yi and AL Luo and YH Song and JK Zhao and ZX Shi and P Wei and JJ Ren and FF Wang and X Kong and YB Li and others",
+	journal = "arXiv preprint arXiv:1306.4540",
+	title = "{M dwarf catalog of LAMOST pilot survey}",
+	year = "2013"
+}
+
+@article{yip2004spectral,
+	author = "CW Yip and AJ Connolly and DE Vanden Berk and Z Ma and JA Frieman and M SubbaRao and AS Szalay and GT Richards and PB Hall and DP Schneider and others",
+	journal = "The Astronomical Journal",
+	number = "6",
+	pages = "2603",
+	publisher = "IOP Publishing",
+	title = "{Spectral classification of quasars in the Sloan Digital Sky Survey: Eigenspectra, redshift, and luminosity effects}",
+	volume = "128",
+	year = "2004"
+}
+
+@article{york2000sloan,
+	author = "Donald G York and J Adelman and John E {Anderson Jr} and Scott F Anderson and James Annis and Neta A Bahcall and JA Bakken and Robert Barkhouser and Steven Bastian and Eileen Berman and others",
+	journal = "The Astronomical Journal",
+	number = "3",
+	pages = "1579",
+	publisher = "IOP Publishing",
+	title = "{The sloan digital sky survey: Technical summary}",
+	volume = "120",
+	year = "2000"
+}
+
+@article{zhang2012legue,
+	author = "Yue-Yang Zhang and Jeffrey L Carlin and Fan Yang and Chao Liu and Li-Cai Deng and Heidi Jo Newberg and Hao-Tong Zhang and S{\'e}bastien L{\'e}pine and Yan Xu and Shuang Gao and others",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "7",
+	pages = "792",
+	publisher = "IOP Publishing",
+	title = "{The LEGUE high latitude bright survey design for the LAMOST pilot survey}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{zhang2013white,
+	author = "Yue-Yang Zhang and Li-Cai Deng and Chao Liu and Sebastien L{\'e}pine and Heidi Jo Newberg and Jeffrey L Carlin and Kenneth Carrell and Fan Yang and Shuang Gao and Yan Xu and others",
+	journal = "arXiv preprint arXiv:1307.2021",
+	title = "{DA white dwarfs observed in LAMOST pilot survey}",
+	year = "2013"
+}
+
+@article{zhao2012lamost,
+	author = "Gang Zhao and Yong-Heng Zhao and Yao-Quan Chu and Yi-Peng Jing and Li-Cai Deng",
+	journal = "Research in Astronomy and Astrophysics",
+	number = "7",
+	pages = "723",
+	publisher = "IOP Publishing",
+	title = "{LAMOST spectral survey---An overview}",
+	volume = "12",
+	year = "2012"
+}
+
+@article{zhao201370,
+	author = "JK Zhao and AL Luo and TD Oswalt and G Zhao",
+	journal = "The Astronomical Journal",
+	number = "6",
+	pages = "169",
+	publisher = "IOP Publishing",
+	title = "{70 DA White Dwarfs Identified in LAMOST Pilot Survey}",
+	volume = "145",
+	year = "2013"
+}
+
+@inproceedings{zuo2012estimate,
+	author = "Fang Zuo and Ali Luo and Jiannan Zhang",
+	booktitle = "{SPIE Astronomical Telescopes+ Instrumentation}",
+	organization = "International Society for Optics and Photonics",
+	pages = "84513A--84513A",
+	title = "{Estimate LAMOST hot star's parameters by POLLUX}",
+	year = "2012"
+}
+
+@book{jolliffe2002principal,
+	author = "Ian T Jolliffe",
+	publisher = "Springer verlag",
+	title = "{Principal component analysis}",
+	year = "2002"
+}
+
+@inproceedings{kriegel2009loop,
+	author = "Hans-Peter Kriegel and Peer Kr{\"o}ger and Erich Schubert and Arthur Zimek",
+	booktitle = "{Proceedings of the 18th ACM conference on Information and knowledge management}",
+	organization = "ACM",
+	pages = "1649--1652",
+	title = "{LoOP: local outlier probabilities}",
+	year = "2009"
+}
+
+@article{liu2013lss,
+	author = "X-W Liu and H-B Yuan and Z-Y Huo and L-C Deng and J-L Hou and Y-H Zhao and G Zhao and J-R Shi and A-L Luo and M-S Xiang and others",
+	journal = "arXiv preprint arXiv:1306.5376",
+	title = "{LSS-GAC-A LAMOST Spectroscopic Survey of the Galactic Anti-center}",
+	year = "2013"
+}
+
+@article{luo2001steps,
+	author = "A-Li Luo and Yong-Heng Zhao",
+	journal = "Chinese Journal of Astronomy and Astrophysics",
+	number = "6",
+	pages = "563",
+	publisher = "IOP Publishing",
+	title = "{Steps Towards a Fully Automated Classification and Redshift-measurement Pipeline for LAMOST Spectra. I. Continuum level and wavelength estimation for galaxies}",
+	volume = "1",
+	year = "2001"
+}
+
+@article{danks1994atlas,
+	title = "{An Atlas of Southern MK Standards From 5800 to 10,200 {\AA}}"
+}
+

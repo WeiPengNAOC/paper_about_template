@@ -1,0 +1,797 @@
+%% *************************************************************************
+%%                                                            raa.tex
+%% RAA Ver. 1.0, LaTeX class for Research in Astronomy & Astrophysics
+%% demonstration file
+%%                      by Zhou Ai-Ying, since 2001.08.28
+%%
+%% Note: 1. Pay close attention to the format of RAA's reference list and
+%%          other requirements. See Instructions for Authors at the web site:
+%%          http://www.chjaa.org
+%%       2. Final publication layout and web version will be produced with
+%%          this LaTeX source file. Please write clean text.
+%%---------------------------------------------------------------------------------
+%%
+
+\documentclass[referee]{raa}            % referee version: for submission
+\usepackage{graphicx,times}
+\usepackage{natbib}
+\usepackage{amssymb,amsmath}
+\bibpunct{(}{)}{;}{a}{}{,}
+
+
+\usepackage[a4paper=true,dvipdfm=true,pagebackref=true]{hyperref}
+% \hypersetup{pdftitle = The title of my PDF, pdfauthor = My name, pdfsubject= The subject, pdfkeywords = keyword1 keyword2 keyword3}
+\hypersetup{colorlinks = true, linkcolor = green, anchorcolor = red, citecolor = blue, filecolor = red, pagecolor = red, urlcolor = red}
+
+%% manuscript produces a one-column, double-spaced document
+
+\begin{document}
+
+   \title{On the Construction of Stellar  Classification Templates Library for LAMOST Spectra Analysis Pipeline
+%\,$^*$
+%\footnotetext{$*$ Supported by the National Natural Science Foundation of China.}
+}
+%   \subtitle{I. Place Your Subtitle Here}
+
+   \volnopage{Vol.0 (200x) No.0, 000--000}      %%preserved for Editor. DOn't remove!
+   \setcounter{page}{1}          %%starting page, preserved for Editor. DOn't remove!
+
+   \author{Wei Peng
+      \inst{1,2,3}
+   \and Luo Ali*
+      \inst{1,2,4}
+\and Pan Jingchang
+      \inst{4}
+%               \and Kong Xiao
+%      \inst{1,2,3}
+\and Wang Fengfei
+      \inst{2}
+%         \and Li Yinbi
+%      \inst{1,2}
+%         \and Song Yihan
+%      \inst{1,2}
+%       	\and Jiang Bin
+%       \inst{4}
+%          \and Tu Liangping
+%       \inst{1,2,5}
+%        \and Yi Zhenping
+%       \inst{1,2,3,4}
+%        \and Liu Jie
+%       \inst{4}
+    \and Zhao Yongheng
+      \inst{1,2}
+   }
+%% Here is an example of three authors come from different institutes.
+%% For single author or all the authors from an institute, use "\inst{}" only
+
+   \institute{
+    Key Laboratory of Optical Astronomy,  Chinese Academy of Sciences, Beijing, 100012, China
+      {\it lal@lamost.org}\\
+      \and
+      National Astronomical Observatories, Chinese Academy of Sciences, Beijing, 100012, China
+     \\
+	  \and
+    University of Chinese Academy of Sciences, Beijing, 100049, China\\
+ 	   \and
+    School of Mechanical, Electrical and Information Engineering, Shandong University,Weihai, 264209, China\\
+       %\and
+%   School of Science, Liaoning University of Science and Technology,  Anshan, 144051, China
+% % Please give the E-mail address of the author, to whom future correspondence and
+% offprint requests will be sent.
+   }
+
+   \date{Received~~2009 month day; accepted~~2009~~month day}
+
+\abstract{
+The aim of LAMOST Spectra Analysis Pipeline (also called 1D Pipeline) is to classify and measure the spectra of objects observed in the survey.
+Stars are classified into different sub-classes by matching to spectra templates.
+To make the classification better and reliable, a new LAMOST stellar spectral classification templates library is constructed.
+This paper presents the construction of the templates through the Principal Component Analysis(PCA) of about one million LAMOST stellar spectra.
+These spectra were selected from all released 1,946,429 stellar spectra  in LAMOST Data Release One (DR1).
+Convolved  with the SDSS \emph{ugriz} filter  curve, each spectrum is assigned a pseudo g-r color (hereafter g$^*$-r$^*$).
+All spectra are divided into different groups by the  g$^*$-r$^*$.
+Additional groups are formed by different subclasses classified with the current pipeline.
+In addition, some special types of psectra are manually picked out to add into the groups.
+In each group,  we exclude some outliers and then apply PCA method to  the remaining  spectra.
+All spectra are reconstructed using the first few principal components and the weighted average spectra are constructed as the template spectra in the groups.
+Each template spectrum  is labeled a MK  class  by comparing with some label-known templates and the spectra of MK standard stars  .
+All the templates are visually inspected and  some low-quality spectra are excluded.
+Additionally, some unlabeled or wrongly labeled spectra are relabeled  or abandoned.
+The finally left spectra compose the template library.
+The first version of the library contains * spectra and * different MK classes, which is available to public on the web site.
+\keywords{methods: data analysis, methods: statistical, surveys}
+}
+
+   \authorrunning{Wei Peng, Luo Ali et al. }            %author_head in even pages
+   \titlerunning{On the Construction of Stellar  Classification Templates Library for LAMOST 1D Pipeline }  % title_head in odd pages
+
+   \maketitle
+%% The author head (on even pages) and the title head (on odd pages) will be
+%% automatically extracted from \author{} and \title{}. Whenever the title is too long,
+%% you will be asked to supply a shorter one by inserting either \authorrunning{} or
+%% \titlerunning{} before \maketitle. Anyway, you can specify your own heads.
+%%
+%%
+%% Note: In the following text body of your manuscript, please note several differences from
+%%       other major journals:
+%% (1) \subsection{Please Capitalize the First Letter of Each Notional Word in Subsection Title}
+%% (2) Please Capitalize the First Letter of Each Notional Word in all tables' captions
+
+%
+%________________________________________________ sections below
+%
+\section{Introduction}           %% first-level sections will be auto-capitalized
+\label{sect:intro}
+The LAMOST survey\citep{cui2012large,zhao2012lamost} contains two main parts: the LAMOST ExtraGAlactic Survey (LEGAS) and the LAMOST Experiment for Galactic Understanding and Exploration survey of Milky Way stellar structure(LEGUE, see \citet{deng2012lamost}).
+The unique design of LAMOST enables it to take 4000 spectra in a single exposure to a limiting magnitude as faint as r=19 at the resolution R=1800, which is equivalent to the design goal of r=20 for the resolution R=500.
+The LAMOST  therefore has great potential to efficiently survey a large volume of space for stars and galaxies.
+
+
+The LAMOST spectral analysis pipeline\citep{luo2001steps,luo2004design,luo2008automated,wang2010calibration,luo2012data} is based on the specBS pipeline\citep{aihara2011eighth} for the analysis of SDSS spectra.
+This analysis code carries out $\chi^2$ fits of the spectra to templates in wavelength space (in the spirit of \cite{glazebrook1998automatic}),
+fitting spectra with linear combinations of eigen-spectra and low-order polynomials.
+
+Currently, a set of SDSS spectra with carefully chosen zero points of a vagriety of spectral types,
+which also contain galaxies, QSOs and stars (categorized in terms of subtypes), are used to construct the templates.
+With more spectra with high quality observed, it is necessary and better to construct a new template library based on the  spectra  observed by LAMOST.
+
+
+In this paper, we described  in detail the construction of the LAMOST stellar  classification template library.
+The paper is processed as follows:
+Section \ref{sect:Sample} describes the used spectra from LAMOST Data Release One (DR1).
+The detailed description of the template library construction steps, the related methods and the group dividing are outlined in section \ref{sect:construction}.
+The results and discussions are given in \ref{sect:Results}.
+A brief summary is given in section \ref{sect:Summary}.
+
+\section{The Spectra From LAMOST Data Release One(DR1)}
+\label{sect:Sample}
+The first data release of LAMOST survey contains the spectra in the pilot survey and the first year of general survey.
+The pilot survey of LAMOST  was launched on 2011 Oct 24, and ended in June 2012.% and about 31,900 spectra were released\citep{luo2012data}.
+The first year of LAMOST general survey began from September  28th 2012 and ended on June 3rd 2013.
+
+
+The  survey has obtained spectra of stars in the Milky Way,
+which includes fainter objects on dark nights \citep{yang2012legue,carlin2012algorithm},
+brighter objects on bright night \citep{zhang2012legue},
+objects in the disk of the Galaxy with low latitude \citep{chen2012legue} and objects in the region of the Galactic Anti-Center\citep{liu2013lss}.
+The DR1 totally contains 2,204,860 spectra, including 717,660 spectra of pilot survey and 1,487,200 spectra of regular survey.
+In addition, the atmospheric parameters of 1,085,404 stars are calculated, which becomes the largest stellar spectral parameters catalog in the world at present.
+
+
+
+The spectral resolution R is about 1800 around g band with a 2/3 silt width\citep{wang2013effects}.
+The wavelength coverage is from 3700 \AA\  to 9100 \AA.
+ Two arms of each spectrograph covers the wavelength range and overlaps in 200\AA.
+ %The spectra in the pilot survey go through the same data processing pipeline as the regular survey.
+The raw data have been reduced with LAMOST 2D pipeline\citep{bai2012lamost} including bias subtraction, cosmic-ray removal, spectral trace and extraction, flat-fielding, wavelength calibration sky subtraction, and combination.
+For the spectra with SNR$>$5, the 1D pipeline\citep{wang2010calibration} gives spectral type and redshift.
+For LAMOST spectra with low confidence in measurement or low SNR, human checking is also applied to data quality\citep{luo2012dr1}.
+%To publish relatively high quality spectra from all the data,  319 000 spectra are left as the released data following the rule proposed in \cite{luo2012data}.
+
+We exclude those spectra in the Galactic Anti Center and M31 to avoid the high effect of interstellar dust  extinction on the spectra
+and 742,669 spectra are left.
+Some other spectra are  excluded in the construction of the library, which will be discussed in the section \ref{sect:construction}.
+% \cite{york2000sloan}
+
+
+\section{The construction  steps}
+\label{sect:construction}
+\subsection{The pseudo g-r color}
+% \cite{mcgurk2010principal} divided all selected SDSS stellar spectra into different bins by the color g-r.
+LAMOST is a spectroscopic oriented  survey telescope and doesn't have its own photometric data.
+The photometric data of objects are from different surveys.
+Meanwhile,  the flux calibration is relative not absolute\citep{song2012relative}.
+Consequently, we can not get accurate and uniform  colors for LAMOST spectra.
+Here, we propose a pseudo g-r color(hereafter g$^*$-r$^*$) obtained by convolving each observed spectra with the SDSS $ugriz$ filter response curves .
+We describe the calculation in detail  as follows:
+\begin{enumerate}
+ \item Suppose that the sampling points of SDSS $g$ \& $r$ filter response curves are $P_g$, $P_r$ respectively and the response curve values are $C_g$, $C_r$ respectively   .
+ \item Interpolate the  flux of the observed spectra in the points of $P_g$ and $P_r$  to get $F_g$ and $F_r$ respectively.
+ \item Get the pseudo color $g^*$-$r^*$:
+ \begin{equation}
+        g^*-r^*=-2.5*log\frac{\sum F_g*C_g}{\sum C_g} +2.5*log\frac{\sum F_r*C_r}{\sum C_r}
+       \end{equation}
+\end{enumerate}
+
+We select these objects with SDSS $ugriz$ filter magnitude(from different surveys) and $SNR>20$.
+The diagram of g-r color and $g^*-r^*$ of these objects is  shown in Fig.\ref{Fig2}.
+There is a obvious linear relationship between these two colors.
+We derive the  best-fit expression as:
+\begin{equation}
+ g-r=0.807*(g^*-r^*)+  0.655
+ \label{eq2}
+\end{equation}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=12cm, angle=0, clip=true]{f1.eps}
+   \caption{The diagram of g-r color and $g^*-r^*$.
+   The X-axis is our proposed $g^*-r^*$ and the Y-axis is the g-r color obtained from target catalogue.
+   The red line is our derived best-fit expression as formula \ref{grrel}.
+   And the points in red are excluded outliers while deriving the expression.
+   }
+   \label{Fig2}
+   \end{figure}
+
+
+
+   Among these spectra, we also choose these spectra classified as O, B, A, F, G, K, M-type.
+   For these spectra, the average value and standard deviation of $g^*-r^*$ in each class are also calculated.
+ As shown in Figure \ref{Fig1}, the $g^*-r^*$ color varies obviously in each class.
+ %we can infer that our defined $g^*-r*$ color can also be a good indicator of effective temperature.
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f5.eps}
+   \caption{The average value and standard deviation of $g^*-r^*$ for  each class.
+   For each class, the X-value are the median effective temperature in theory.
+   Meanwhile, the center of each error-bar is the average  $g^*-r^*$ color of spectra classified as the corresponding class and the half length is the standard deviation.
+   }
+   \label{Fig1}
+   \end{figure}
+
+
+   The g-r color  is a very good indicator of effective temperature. %\citep{lee2008segue,ivezic2008milky}.
+For SDSS spectra, \citet{ivezic2008milky} derived a relation between effective temperature and the color g-r in the $-0.3 < g-r < 1.3$ color range:
+\begin{equation}
+ Log_{10}(T_{eff}/K)=0.0283*(g-r)^3 + 0.0488*(g-r)^2 - 0.316*(g-r) +3.882
+ \label{grrel}
+\end{equation}
+
+We can then  derive a expression between effective temperature $T_{eff}$ and the color g$^*$-r$^*$ from the  formula \ref{grrel}  and the  formula \ref{eq2} as:
+\begin{equation}
+ Log_{10}(T_{eff}/K)=0.0283*(g^*-r^*)^3 + 0.0318*(g^*-r^*)^2 - 0.203*(g^*-r^*) +3.696
+ \label{eq3}
+\end{equation}
+
+For some spectra classified as A, F, G, K-type, the effective temperatures($T_{eff}$), surface gravities(Log g) and metallicities([Fe/H]) determined by the LASP(LAmost Stellar Parameter pipeline, see \citet{wu2011automatic}) are provided.
+The relationship between $g^*-r^*$  color and $T_{eff}$ is shown in  Figure \ref{Fig3}.
+We also derive a best fit 3-order  polynomial expression as:
+\begin{equation}
+Log_{10}(T_{eff}/K)=0.0432*(g^*-r^*)^3 +0.0107*(g^*-r^*)^2 -0.165*(g^*-r^*) +3.746
+\label{eq4}
+\end{equation}
+
+As shown in Fig.\ref{Fig3}, these two formulas \ref{eq3} and \ref{eq4}  nearly  coincide with each other in the Teff range [5500,7000].
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f3.eps}
+   \caption{The relationship between $g^*-r^*$  color and $T_{eff}$.
+   The $T_{eff}$ is added by 223K to decrease the system inconsistency between SSPP and LASP\citep{wu2011automatic}.
+    The yellow line is the expression as formula \ref{eq3}.
+     The red line is our derived best-fit expression as formula \ref{eq4}.
+     And the points in red are excluded outliers while deriving the expression.   }
+   \label{Fig3}
+   \end{figure}
+
+
+
+\subsection{Group Dividing}
+We select these spectra with $g^*-r^*$ in  the range[-1.5,2.0] and divide all spectra into 175 groups with 0.02 mag width interval.
+The number distribution is shown in Figure \ref{Fig4}.
+We mark these these groups with group-id from 1 to 175.
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f2.eps}
+   \caption{The number distribution of spectra in each $g^*-r^*$ bin.
+   The blue line is all spectra while the red line is the spectra with $SNR>10$.
+   }
+   \label{Fig4}
+   \end{figure}
+
+After the automated processing of LAMOST Spectra Analysis Pipeline and visual inspection,
+there are 76 different stellar subclasses in our selected spectra.
+The distribution is given is Table \ref{tab1}.
+Some A-type spectra in MILES library\citep{falcon2011updated} are picked out to add into the templates.
+Consequently, there are more A-type subclasses.
+We mark these these groups with group-id from 176 to 251.
+%
+%In addition, we have changed some spectra's subclasses and add some new spectra.
+%  \begin{itemize}	
+
+ \citet{yi2013m} present a spectroscopic catalog of 67,082 M dwarfs from LAMOST Pilot Survey.
+All spectra are divided into 10 subclasses from M0 to M9.
+We have divided these spectra into groups with group id as shown in Table \ref{tab1}.
+ \citet{zhao201370}  present a spectroscopically identified catalog of 70 DA white dwarfs (WDs).
+Meanwhile, \citet{zhang2013white}  identified 230 other DA  white dwarfs.
+We combine these two catalogs and add the spectra into group 250.
+ \citet{jiang2013data} report the identification of 10 cataclysmic variables.
+We add these 10 spectra into group 207.
+%\end{itemize}
+
+
+\begin{table}
+\bc
+\begin{minipage}[]{100mm}
+\caption[]{The number distribution of different subclasses\label{tab1}}\end{minipage}
+\setlength{\tabcolsep}{1pt}
+\small
+ \begin{tabular}{clr|lclr|lclr}
+  \hline\hline
+Group ID&Subclass&Amount&&Group ID&Subclass&Amount&&Group ID&Subclass&Amount\\
+  \hline
+176&A0&67&&202&B9&443&&227&L&2\\
+177&A0I&27&&203&Binary&170&&228&L0&1\\
+178&A0III&407&&204&Carbon&168&&229&L1&1\\
+179&A0p&27&&205&CarbonWD&6&&230&L2&1\\
+180&A1IV&653&&206&Carbon\_lines&10&&231&L5&4\\
+181&A1V&527&&207&CV&17&&232&L5.5&8\\
+182&A2I&10&&208&EM&42&&233&L9&5\\
+183&A2IV&1692&&209&Emission&21&&234&M0&19139\\
+184&A2V&5761&&210&F0&27808&&235&M0V&13\\
+185&A3I&37&&211&F2&44192&&236&M1&19953\\
+186&A3IV&2084&&212&F5&119328&&237&M2&17231\\
+187&A3V&2080&&213&F9&292830&&238&M2V&12\\
+188&A4III&926&&214&G0&47697&&239&M3&9749\\
+189&A4V&773&&215&G2&92229&&240&M4&3860\\
+190&A5&26&&216&G4&1&&241&M5&855\\
+191&A5I&213&&217&G5&81202&&242&M6&412\\
+192&A5V&1253&&218&G7&3650&&243&M7&259\\
+193&A6IV&1240&&219&K&1&&244&M8&47\\
+194&A6V&322&&220&K0&1998&&245&M9&66\\
+195&A7III&4033&&221&K1&85218&&246&Non&2\\
+196&A7V&647&&222&K3&77164&&247&O&79\\
+197&A9&4&&223&K5&73045&&248&OB&16\\
+198&A9V&2170&&224&K6&1&&249&T2&11\\
+199&B&15&&225&K7&45839&&250&WD&535\\
+200&B0&1&&226&K9&4&&251&WDmagnetic&14\\
+201&B6&492&&&&&&&&\\
+
+ \hline\hline
+\end{tabular}
+\ec
+%% place \tablecomments and \tablerefs below \end{center| and \end{center}:
+%% you may leave the table-width parameter to editors or set to your actual size
+%\tablecomments{0.86\textwidth}{The SDSS $ugriz$ magnitudes are given in AB system
+%and the UKIDSS $YJHK$ magnitudes are given in Vega system.}
+\end{table}
+
+
+
+Consequently, there are 251 groups in total.
+The group with less number are not neglected to avoid excluding some relatively rare types of stars.
+
+\subsection{Used Methods}
+
+\subsubsection{ LOcal Outlier Probabilities(LoOP)}
+\citet{kriegel2009loop} proposed a local outlier factor(LOF, see \citet{breunig2000lof}) based outlier detection  method.
+LoOP is a local density based method that uses statistical concepts to output the final score.
+The LoOP score represents the probability that a particular point is a local density outlier.
+The LoOP is calculated as follows\citep{kriegel2009loop}:
+\begin{enumerate}
+					\item   ($k$-$distance$ of an object $p$) For any
+					positive integer $k$,  the $k$-distance of object $p$, denoted as
+					$k$-$distance (p)$, is defined as the distance $d (p, o)$ between $p$ and
+					an object $o\in D$ such that:
+					 (i) For at least $k$ objects $o'\in{D}\setminus{p}$, it holds that $d (p, o')\le d (p, o)$.
+					 (ii )For at most $k$-1 objects $o'\in D\setminus p$, 	it holds that $d (p, o')$$<$$d (p, o)$.
+					
+					\item ($k$-$distance$ neighborhood of an object $p$)
+					Given the $k$-$distance$ of $p$, the $k$-$distance$ neighborhood of $p$
+					contains every object whose distance from $p$ is not greater than
+					the $k$-$distance$, i.e. $N_{k}$$_-$$_{distance (p)} (p)=\{q\in D\setminus p\mid
+					d (p, q)\leq k$-$distance (p)\}$. These objects $q$ are called the
+					$k$-$nearest$ neighbors of $p$. Simplify the notation to use
+					$N_{k} (p)$ as a shorthand for $N_k$$_{-}$$_{distance} (p)$.
+					
+					  \item  The standard distance. $\sigma(p,N_k(p))$ is defined as the standard deviation of the distance around $p$:
+					  \begin{equation}
+					   \sigma(p,N_k(p))=\sqrt{\frac{\sum_{s\in N_k(p)}^{} d(p,s)^2}{|S|}}
+					  \end{equation}
+					
+					 \item  The probabilistic set distance. $pdist(\lambda,p,N_k{p})$ is defined as follows:
+					  \begin{equation}
+					  pdist(\lambda,p,N_k{p})=\lambda*\sigma(p,N_k(p))
+					  \end{equation}
+					
+					   \item The Probabilistic Local Outlier Factor PLOF.  $PLOF_{\lambda,S(p)}(p)$ represents the ratio of the density estimation:
+					  \begin{equation}
+					   PLOF_{\lambda,S(p)}(p)=\frac{pdist(\lambda,p,N_k(p))*|N_k(p)|}{\sum_{s\in N_k(p)}^{}pdist(\lambda,s,N_k(s))}-1
+					  \end{equation}
+					
+					  \item The aggregate Probabilistic Local Outlier Factor nPLOF.  This is the scaling factor that makes the score independent from any distribution:
+					  \begin{equation}
+					   nPLOF=\lambda*\sqrt{\frac{\sum_{p\in D}^{}PLOF_{\lambda,S(p)}(p)^2}{|D|}}
+					  \end{equation}
+					
+					  \item The Local Outlier Probability:
+					  \begin{equation}
+					   LoOP_{N_k{p}}(p)=max(0,erf\frac{PLOF_{\lambda,S}(p)}{nPLOF*\sqrt{2}})
+					  \end{equation}
+\end{enumerate}
+Although the spectra are divided into different groups by g$^*$-r$^*$ or by the classification, there are also some outliers in each group.
+We use the LoOP method to exclude these outliers in each group.
+%In our work, we use LoOP to exclude outliers in each group to get a better template spectra.
+The distance measurement function used in our work is the cosine distance $d=1-\frac{A*B}{|A|*|B|}$
+\subsubsection{Principal Component Analysis(PCA)}
+The Principal Component Analysis (PCA) \citep{jolliffe2002principal} is a mathematical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.
+			     	  	The number of principal components is less than or equal to the number of original variables.
+			     	  	This transformation is defined in such a way that the first principal component has the largest possible variance (that is,  accounts for as much of the variability in the data as possible),
+			     	  	and each succeeding component in turn has the highest variance possible under the constraint that it be orthogonal to  (i.e.,  uncorrelated with) the preceding components.	
+				      The detailed description of the PCA method is discussed in \citet{whitney1983principal,jolliffe2002principal}.
+				
+				      As a viable tool, Principal Component Analysis(PCA) has been applied  in the classification of spectra\citep{whitney1983principal,bailer1998automated,yip2004spectral,almeida2013automated}.
+In addition, \cite{tu2009new,tu2010method,jiang2013data,wei2013mining} have used PCA to do the data dimension reduction in finding relatively rare objects.
+\cite{mcgurk2010principal} applied PCA to 200,000 stellar spectra obtained by the Sloan Digital Sky Survey (SDSS).
+They discussed correlations of eigen-coefficients with metallicity and gravity estimated by the Sloan Extension for Galactic Understanding and Exploration Stellar Parameters Pipeline(SSPP)\citep{lee2008segue}.
+
+\subsection{The Construction Steps}
+Combing the above methods and group dividing method, the construction steps is carried out as follows:
+\begin{enumerate}
+\item For the groups with more than 5,000 spectra, only first 5,000 spectra with the largest SNR are selected.
+\item De-redshift the spectra and unify the wavelength to 3800\AA-9000\AA \ with fixed step 1\AA(the amount of all sampling points is N=5201) and then get the unified flux F for each spectrum.
+  \item Exclude these spectra existing $F\le0$ and normalize the remaining spectra $F$ with:
+       \begin{equation}
+        F_i=\frac{F_i}{\sqrt{\sum\limits_{j=1}^{N}F_i^2}}
+       \end{equation}
+ \item Calculate LoOP in each group
+ \item These spectra with  $LoOP\ge0.4$ are excluded.
+		
+
+      \item Do PCA of all selected spectra in each group to  get a feature matrix $T$ and the respective eigen values $\lambda$.
+      \item Select the first $k$-th principal components(eigen spectra) while the variance contribution rate $\mu$ :
+      \begin{equation}
+       \mu=\frac{\sum\limits_{i=1}^{k}\lambda_i}{\sum\limits_{i=1}^{N}\lambda_i}>\theta
+      \end{equation}
+      where $\theta$ is a fixed given threshold (0.99 is used in our work).
+       $k$ is set to 2 when $k=1$.
+
+     \item Reconstruct each selected spectra using obtained first $k$ principal components
+     \item Calculate LoOP of remaining reconstructed spectra in each group again and exclude these spectra with $LoOP\ge0.2$
+
+      \item Get the SNR weighted average spectrum as the template spectrum .
+     \end{enumerate}
+
+Following the above steps, the template spectra are successfully constructed in 216 groups (nearly 86\%).
+Other 35 groups fail mainly because of lacking enough high quality spectra.
+\subsection{MK Class Labeling}
+Each spectrum should be labeled a subclass for latter usage in classification.
+We compare these spectra with three libraries and label each spectrum a subclass.
+
+\citet{danks1994atlas} presented spectra  for MK standards in the wavelength range    5800\AA-10200\AA.
+The stars cover the normal spectral types O to M and    luminosity types I, III, and V.
+The projected slit width along the dispersion is about 4\AA\ and the resolution R is about 1200.
+Two wavelength ranges [7500\AA,7700\AA] and [6800\AA,7000\AA] are masked to get rid of the strong telluric lines left in the spectra.
+We decrease the resolution of our templates to R~1200 by convolving a gaussian function.
+All template spectra and standard spectra are unified into the wavelength range [6100\AA,9000\AA] with a fixed step 4\AA.
+For each template spectrum, the first four  closest  are chosen and the corresponding spectra are drawn together with the template spectra.
+Those figures are used for following visual inspection.
+
+\citet{bolton2012spectral} describe the detail of the pipeline for SDSS III and publish the template used on the web page\footnote{\url{http://www.sdss3.org/svn/repo/idlspec2d/tags/v5_4_45/templates/}}.
+For stellar spectral classification,  123 templates are provided which are created from the full database of Indo-U.S. spectra.
+Each spectrum are labeled a MK class by matching with POLLUX database.
+The resolution R of these 123 spectra is about 2000 and the wavelength coverage is from 3500\AA\ to 11200\AA.
+These spectra are unified into the wavelength range [3800\AA,9000\AA] with a fixed step 1\AA\ similar with the spectra in the library .
+Similarly, for each template spectrum, the first four  closest are chosen and the corresponding spectra are drawn together with the template spectra.
+And those figures are used for following visual inspection.
+
+As introduced above, the current library used for stellar classification in LAMOST contains 36 classes plus 20 subclasses specially for A-type star.
+The resolution R of these 56 spectra is about 2000 and the wavelength coverage is from 3800\AA\ to 9200\AA.
+These spectra are unified into the wavelength range [3800\AA,9000\AA] with a fixed step 1\AA\ similar with the spectra in the library .
+Similarly, for each template spectrum, the first four  closest are chosen and the corresponding spectra are drawn together with the template spectra.
+And those figures are used for following visual inspection.
+
+Each template spectrum is visually inspected by checking the three figures drawn above.
+And then each spectrum is labeled a MK class.
+Meanwhile, those template spectra with bad data or low S/N R are excluded.
+%Finally,  there are * spectra and * different MK classes are left in the template library.
+
+
+\section{Results and  discussions}
+\label{sect:Results}
+A updated library is formed after adding some spectra of new subclasses and replacing some spectra.
+These spectra of these types not existing in our library are left.
+The library of the current version(V1.0) is publicly available on the web site\footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
+The current library has been used in the new new version of LAMOST 1D pipeline for spectra after data release one.
+\subsection{Examples}
+Here we choose four typical groups (Group 59,180 ,207 and 237)  to  discuss in detail.
+The main information of these groups is shown in Table.\ref{tab2}.
+The MK classes are F6V, A1IV, CV and M2 respectively.
+The finally constructed template spectra of these groups are as shown in Fig.\ref{Fig6}.
+
+
+\begin{table}
+\bc
+\begin{minipage}[]{100mm}
+\caption[]{The main information of groups 59,180, 207 and 237\label{tab2}}\end{minipage}
+\setlength{\tabcolsep}{1pt}
+\small
+ \begin{tabular}{c|r|r|c|c|c|c}
+  \hline\hline
+Group ID&All spectra&used spectra&Subclass&Subclass1&Subclass2&Subclass3\\
+  \hline
+59  &18534    &3048  &F4V    &F3V/F5V  &F8III-IV &F5   \\
+180 &653    &381  &A1IV    &A4V/A1V  &A2V&A1V    \\
+207 &27     &13  &CV    &-  &-&-    \\
+237 &17231     &325  &M2    &M1/M0  &M1.5V/M3V&M2/M1    \\
+ \hline\hline
+\end{tabular}
+\ec
+%% place \tablecomments and \tablerefs below \end{center| and \end{center}:
+%% you may leave the table-width parameter to editors or set to your Vactual size
+\tablecomments{0.86\textwidth}{Subclass is the final MK class.
+Subclass1 is the best fit Mk class with \citet{bolton2012spectral}.
+Subclass2 is the best fit Mk class with \citet{danks1994atlas}.
+Subclass3 is the best fit Mk class with \citet{luo2012dr1}.}
+\end{table}
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f6.eps}
+   \caption{The template spectra of groups 59,180, 207 and 237.
+   }
+   \label{Fig6}
+\end{figure}
+
+\textbf{Group:59}
+This group contains the spectra in the color $g^*-r^*$ range [-0.34,-0.32].
+There are totally 18,534 spectra and 3,048 spectra are selected from the first 5,000 spectra with the highest SNR.
+As shown in Fig \ref{Fig91}, the spectrum is very close to F3V/F5V in \citet{bolton2012spectral}.
+Consequently, the template spectrum is labeled as 'F4V'.
+\begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f91.eps}
+   \caption{The comparison of the template spectrum in group 59 with  F3V/F5V in \citet{bolton2012spectral}.
+The black line is the spectrum constructed in our work.
+The red one is the closest spectrum in \citet{bolton2012spectral}.
+   }
+   \label{Fig91}
+\end{figure}
+
+As shown in Fig \ref{Fig71},  the variance of the first  principal component  exceeds more than 99\% of the total variance of the original data.
+That is due to the high similarity of the spectra in the group.
+Consequently, the reconstructed spectra using first two  principal components are nearly similar to the origin spectra(see Fig \ref{Fig81}).
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f71.eps}
+   \caption{The first four eigen spectra(principal components) of group 59.
+   }
+   \label{Fig71}
+\end{figure}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f81.eps}
+   \caption{Three examples of reconstructed spectra in group 59
+   }
+   \label{Fig81}
+\end{figure}
+
+
+\textbf{Group:180}
+This group contains the spectra classified as 'A1IV' by pipeline.
+There are totally 653 spectra and 381 spectra are selected.
+The spectrum is labeled as 'A1IV' following the group selection criteria.
+As shown in Fig \ref{Fig92}, the SNR of the template is a little larger than the template in \citet{luo2012dr1} while these two spectrum are nearly close to each other.
+\begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f92.eps}
+   \caption{The comparison of the template spectrum in group 59 with  A1IV in \citet{luo2012dr1}.
+The black line is the spectrum constructed in our work.
+The red one is the closest spectrum in \citet{luo2012dr1}.
+   }
+   \label{Fig92}
+\end{figure}
+
+Similar with group 59, the variance of the first  principal component also exceeds more than 99\% of the total variance of the original data(see Fig \ref{Fig72}).
+However, there are not as many spectra as in group 59.
+Consequently, some  spectra are not well reconstructed(as shown in Fig \ref{Fig82}).
+In spite of this, the template spectrum is well constructed after excluding these badly reconstructed spectra.
+%和模板的一个比较
+%The results of this group show that
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f72.eps}
+   \caption{The first four eigen spectra(principal components) of group 180.
+   }
+   \label{Fig72}
+\end{figure}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f82.eps}
+   \caption{Three examples of reconstructed spectra in group 180
+   }
+   \label{Fig82}
+\end{figure}
+
+
+\textbf{Group:207}
+This group contains the spectra classified as 'CV'.
+There are totally 27 spectra and 13 spectra are selected.
+The spectrum is labeled as 'CV' following the group selection criteria.
+
+Compared with normal stars, the spectra of CV stars are these with strong hydrogen Balmer and helium emission lines that typically signify ongoing accretion.
+As shown in Fig \ref{Fig73}, the first two principal components show obvious and strong emission lines and the sum of the variances of these two  principal components  exceeds more than 99\% of the total variance of the original data.
+Compared to normal stars misclassified as 'CV', the spectra of CV stars are almost faultlessly reconstructed(see Fig \ref{Fig83}).
+And then these misclassified spectra are excluded in the next following steps.
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f73.eps}
+   \caption{The first four eigen spectra(principal components) of group 207.
+    Note that the strong lines in eigen spectra 2 are emission lines not absorption lines.
+   }
+   \label{Fig73}
+\end{figure}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f83.eps}
+   \caption{Three examples of reconstructed spectra in group 207.
+   }
+   \label{Fig83}
+\end{figure}
+\textbf{Group:237}
+
+This group contains the spectra classified as 'M2'.
+%All M-type spectra are visually inspected to classify the subclass.
+There are totally 17,231 spectra and 325 spectra are selected from first 5,000 spectra with the highest SNR.
+Due to the existence of wavelength points with $flux\le0$, a large amount of  spectra are excluded in this group.
+The spectrum is labeled as 'M2' following the group selection criteria.
+
+
+
+As shown in Fig \ref{Fig74}, the sum of the variances of the first two principal components  exceeds more than 99\% of the total variance of the original data.
+The selected spectra are not well reconstructed in the blue arm(as shown in Fig \ref{Fig84}).
+In spite of this, the template spectrum is also well constructed.
+
+
+To check the quality, we choose the M2-type template spectrum in the current template library \citep{wang2010calibration} and compare it with the template spectrum of group 237(see Fig \ref{Fig94} upper panel)..
+\citet{bochanski2007low}  presented template spectra of low-mass (M0-L0) dwarfs derived from over 4000 Sloan Digital Sky Survey spectra.
+We choose the M2-type template spectrum and alsoe compare it with the template spectrum of group 237(see Fig \ref{Fig94} bottom panel).
+As shown in Fig \ref{Fig94}, we can infer that our constructed M2-type spectrum is a little better than these two spectra.
+
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f74.eps}
+   \caption{The first four eigen spectra(principal components) of group 237.
+   }
+   \label{Fig74}
+\end{figure}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f84.eps}
+   \caption{Three examples of reconstructed spectra in group 237.
+   }
+   \label{Fig84}
+\end{figure}
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=8cm, angle=0,clip]{f94.eps}
+   \caption{The comparison of the template spectrum in group 59 with  M2 in \citet{bochanski2007low}.
+The black line is the spectrum constructed in our work.
+The red one is the closest spectrum in  \citet{bochanski2007low}.
+   }
+   \label{Fig94}
+\end{figure}
+
+\label{sect:Comparisons}
+%\subsection{Comparison with current templates}
+%The current version of LAMOST 1D pipeline\citep{luo2004design,wang2010calibration} uses a template library obtained from selected SDSS spectra, which contains 36 different types of stellar spectra.
+%
+%
+%\subsection{Comparison with \citet{bochanski2007low}}
+%
+%Compare with
+
+%There are also some other types of stellar spectra group
+\subsection{Discussions}
+Compare with \cite{mcgurk2010principal}
+\begin{table}
+\bc
+\begin{minipage}[]{100mm}
+\caption[]{The   \label{tab3}}\end{minipage}
+\setlength{\tabcolsep}{1pt}
+\small
+ \begin{tabular}{cccc|ccccc|ccccc}
+  \hline\hline
+Group ID	&ESID1	&ESID2	&ESID3	& 	&Group ID	&ESID1	&ESID2	&ESID3& 	&Group ID	&ESID1	&ESID2	&ESID3\\
+  \hline
+38	&1	&2	&3	&	&59	&19	&20	&18	&	&80	&39	&38	&40\\
+39	&1	&2	&3	&	&60	&19	&20	&21	&	&81	&40	&41	&39\\
+40	&2	&3	&1	&	&61	&20	&23	&22	&	&82	&41	&40	&42\\
+41	&3	&2	&4	&	&62	&24	&23	&25	&	&83	&42	&41	&43\\
+42	&4	&5	&3	&	&63	&25	&24	&26	&	&84	&43	&42	&44\\
+43	&5	&6	&7	&	&64	&26	&25	&27	&	&85	&44	&43	&45\\
+44	&6	&7	&5	&	&65	&27	&26	&28	&	&86	&45	&44	&46\\
+45	&7	&8	&6	&	&66	&28	&27	&29	&	&87	&45	&46	&44\\
+46	&8	&9	&7	&	&67	&28	&29	&27	&	&88	&46	&47	&45\\
+47	&9	&10	&11	&	&68	&29	&30	&28	&	&89	&47	&48	&46\\
+48	&11	&10	&12	&	&69	&30	&29	&31	&	&90	&48	&47	&49\\
+49	&12	&11	&10	&	&70	&30	&31	&29	&	&91	&49	&48	&50\\
+50	&12	&13	&11	&	&71	&-	&-	&-	&	&92	&50	&49	&51\\
+51	&13	&14	&12	&	&72	&32	&33	&31	&	&93	&51	&50	&52\\
+52	&14	&15	&13	&	&73	&33	&32	&34	&	&94	&52	&51	&53\\
+53	&15	&14	&16	&	&74	&34	&35	&33	&	&95	&53	&52	&54\\
+54	&16	&15	&17	&	&75	&35	&34	&36	&	&96	&53	&54	&52\\
+55	&16	&17	&15	&	&76	&35	&36	&37	&	&97	&54	&55	&53\\
+56	&17	&18	&16	&	&77	&36	&37	&35	&	&98	&55	&54	&53\\
+57	&18	&17	&19	&	&78	&37	&38	&36	&	&99	&55	&54	&53\\
+58	&18	&19	&20	&	&79	&38	&37	&39	&	&	&	&	&\\
+
+
+ \hline\hline
+\end{tabular}
+\ec
+%% place \tablecomments and \tablerefs below \end{center| and \end{center}:
+%% you may leave the table-width parameter to editors or set to your Vactual size
+\tablecomments{0.86\textwidth}{Subclass is the final MK class.
+Subclass1 is the best fit Mk class with \citet{bolton2012spectral}.
+Subclass2 is the best fit Mk class with \citet{danks1994atlas}.
+Subclass3 is the best fit Mk class with \citet{luo2012dr1}.}
+\end{table}
+
+why not directly use SDSS DR9 template
+
+
+\section{Summary}
+\label{sect:Summary}
+To improve the performance of LAMOST 1D Pipeline, a new stellar spectral classification template library is constructed.
+About 750,000 spectra are chosen from the first data release of LAMOST.
+All spectra are divided into different groups by our proposed pseudo color $g^*-r^*$.
+Additional groups are formed by different subclasses classified the current pipeline.
+In addition, some special types of psectra are manually picked out to add into the groups.
+And then these spectra are reduced by our proposed method, which use PCA to reconstruct the original spectra to get spectra of high quality and LoOP to exclude outliers in each group.
+The weighted average spectra in each group are treated as the constructed template spectra.
+By automatically matching with two known MK class standard spectra library and visual inspection, each spectrum is labeled a MK class.
+Also some incorrect spectra are excluded.
+
+
+However, there are also some problems needing to solve.
+We notice that most of our template spectra are those of main sequence stars.
+Some additional labeled spectra such as A-type giants and K-type giants are needed to construct the supplemented templates following the method proposed in this paper.
+In addition,  some rare  rare types of stars such DC and DZ white dwarfs , magnetic white  dwarfs and carbon white dwarfs, also need to construct  template spectra.
+
+
+
+
+% %
+% %               one-column-spanning table
+% %________________________________________ Table 2: Use_of_the routines
+% \begin{table}
+% \begin{center}
+% \caption[]{ Please Capitalize the First Letter of Each Notional Word
+% in Table's Caption.}\label{Tab:publ-works}
+%
+% %%Please Capitalize the First Letter of Each Notional Word in table's caption
+%
+%  \begin{tabular}{clcl}
+%   \hline\noalign{\smallskip}
+% No &  Star      & Photometer & References                    \\
+%   \hline\noalign{\smallskip}
+% 1  & GSC 2683-3076 & CCD     & Zhou et al.\ (\cite{zhou01})  \\ % new variable
+% 2  & IP Vir     &   4-CH     & present work                  \\
+% 3  & YZ Boo     &   3-CH     & present work                  \\
+%   \noalign{\smallskip}\hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+
+
+
+\begin{acknowledgements}
+The authors would like to thank the anonymous referees for their constructive comments,
+and are grateful to  Prof. Yang Haifeng,Dr.Song Yihan, Mrs Re Juanjuan ,Hou Wen for useful suggestions on methods and analysis of the results.
+This work is supported by the National Natural Science Foundation of China (Grant No.  61202315, 11078013  and 11203045,11303036).
+
+ Guoshoujing Telescope (the Large Sky Area Multi-Object Fiber Spectroscopic Telescope LAMOST) is a National Major Scientific Project built by the Chinese Academy of Sciences.
+ Funding for the project has been provided by the National Development and Reform Commission.
+ LAMOST is operated and managed by the National Astronomical Observatories, Chinese Academy of Sciences.
+
+\end{acknowledgements}
+
+\appendix                  %%appendicial material is supported
+
+
+
+
+
+\bibliographystyle{raa}
+\bibliography{bibtex}
+
+\label{lastpage}
+
+\end{document}
+%%==^..^============== the END of RAA.tex ===================^_^==
