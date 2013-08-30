@@ -42,18 +42,18 @@
       \inst{1,2,4}
 \and Pan Jingchang
       \inst{4}
+%          \and Tu Liangping
+%       \inst{1,2,5}
+%       	\and Jiang Bin
+%       \inst{4}
+         \and Li Yinbi
+      \inst{1,2}
 %               \and Kong Xiao
 %      \inst{1,2,3}
 \and Wang Fengfei
       \inst{2}
-%         \and Li Yinbi
-%      \inst{1,2}
 %         \and Song Yihan
 %      \inst{1,2}
-%       	\and Jiang Bin
-%       \inst{4}
-%          \and Tu Liangping
-%       \inst{1,2,5}
 %        \and Yi Zhenping
 %       \inst{1,2,3,4}
 %        \and Liu Jie
@@ -483,6 +483,7 @@ These spectra of these types not existing in our library are left.
 The library of the current version(V1.0) is publicly available on the web site\footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
 The current library has been used in the new new version of LAMOST 1D pipeline for spectra after data release one.
 \subsection{Examples}
+\label{sect:Examples}
 Here we choose four typical groups (Group 59,180 ,207 and 237)  to  discuss in detail.
 The main information of these groups is shown in Table.\ref{tab2}.
 The MK classes are F6V, A1IV, CV and M2 respectively.
@@ -667,7 +668,7 @@ The red one is the closest spectrum in  \citet{bochanski2007low}.
    \label{Fig94}
 \end{figure}
 
-\label{sect:Comparisons}
+%\label{sect:Comparisons}
 %\subsection{Comparison with current templates}
 %The current version of LAMOST 1D pipeline\citep{luo2004design,wang2010calibration} uses a template library obtained from selected SDSS spectra, which contains 36 different types of stellar spectra.
 %
@@ -678,11 +679,17 @@ The red one is the closest spectrum in  \citet{bochanski2007low}.
 
 %There are also some other types of stellar spectra group
 \subsection{Discussions}
-Compare with \cite{mcgurk2010principal}
+\subsubsection{Comparison with \cite{mcgurk2010principal}}
+\cite{mcgurk2010principal} applied PCA  to about 100,000 SEGUE spectra by dividing all spectra into 55 different bins.
+For each bin, the first four eigenspectra are published and the first one is a high SNR mean spectra.
+For the template spectra in all groups, to check the difference, we use similar method as MK class labeling to  find three closest mean spectra in \cite{mcgurk2010principal}.
+As our  color range is wider than \cite{mcgurk2010principal}, not all template spectra are similar with these in  \cite{mcgurk2010principal}.
+As shown in Table \ref{tab3}, the groups with groups id from 38 to 99(totally 60 groups, not including group 71) cover nearly all mean spectra constructed by \cite{mcgurk2010principal}.
+The finally subclasses are from A3 to K3, which coincides with sayings in \cite{mcgurk2010principal}.
 \begin{table}
 \bc
 \begin{minipage}[]{100mm}
-\caption[]{The   \label{tab3}}\end{minipage}
+\caption[]{The comparison with \cite{mcgurk2010principal}  \label{tab3}}\end{minipage}
 \setlength{\tabcolsep}{1pt}
 \small
  \begin{tabular}{cccc|ccccc|ccccc}
@@ -717,13 +724,42 @@ Group ID	&ESID1	&ESID2	&ESID3	& 	&Group ID	&ESID1	&ESID2	&ESID3& 	&Group ID	&ESI
 \ec
 %% place \tablecomments and \tablerefs below \end{center| and \end{center}:
 %% you may leave the table-width parameter to editors or set to your Vactual size
-\tablecomments{0.86\textwidth}{Subclass is the final MK class.
-Subclass1 is the best fit Mk class with \citet{bolton2012spectral}.
-Subclass2 is the best fit Mk class with \citet{danks1994atlas}.
-Subclass3 is the best fit Mk class with \citet{luo2012dr1}.}
+\tablecomments{0.86\textwidth}{The ESID1, ESID2 and ESID3 are bin ID of the first three closest eigen spectra in \cite{mcgurk2010principal} respectively. }
 \end{table}
+\subsubsection{Comparison with current templates of LAMOST spectra analysis pipeline and \citet{bolton2012spectral}}
+As supplements to current templates, our constructed templates replace most spectra in the current library including the A-type stellar spectra.
+From the comparisons discussed in section \ref{sect:Examples}, we can infer that newly constructed template spectra are a little better than current ones.
 
-why not directly use SDSS DR9 template
+There are 123 stellar subclasses in \citet{bolton2012spectral}.
+These template spectra  are individual spectra in  Indo-U.S. database.
+We notice that there are 80 subclasses which contain less than 500 spectra in SDSS DR9.
+There are totally 12,897 spectra(about 1.66\% in all 773,275 spectra) and 1,062 spectra(about 0.22\% in all 475694 spectra) with SNR$>10$.
+Meanwhile, the average SNR of these spectra is about 4.93 which is much less the one of all spectra.
+In other words, there are mainly 43 stellar subclasses containing most spectra especially these spectra with high SNR.
+
+
+Considering the differences between LAMOST spectra with spectra in other survey,
+these newly constructed spectra are more reliable and more similar to the spectra observed in LAMOST survey.
+That is because these template spectra are constructed from  a healthy sum of spectra from  LAMOST DR1.
+
+\subsubsection{Remaining problems}
+
+The result show that our constructed template spectra can be used in the classification of stellar spectra.
+There are also some problems needing to solve.
+\begin{enumerate}
+\item
+We notice that most of our template spectra are these of main sequence stars.
+To construct the template spectra of some other rare types such as  K-type giants, DC and DZ white dwarfs,
+some spectra  need to be labeled manually or picked out by other methods.
+\item
+Three libraries are used to label each template.
+However, how to label the template spectra better is also a remaining problem to solve.
+\end{enumerate}
+
+In addition, there are some outliers excluded in each group while constructing the templates.
+It is also worth studying these objects and finding rare types even new types of star.
+
+
 
 
 \section{Summary}
@@ -739,10 +775,6 @@ By automatically matching with two known MK class standard spectra library and v
 Also some incorrect spectra are excluded.
 
 
-However, there are also some problems needing to solve.
-We notice that most of our template spectra are those of main sequence stars.
-Some additional labeled spectra such as A-type giants and K-type giants are needed to construct the supplemented templates following the method proposed in this paper.
-In addition,  some rare  rare types of stars such DC and DZ white dwarfs , magnetic white  dwarfs and carbon white dwarfs, also need to construct  template spectra.
 
 
 
