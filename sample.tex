@@ -26,7 +26,7 @@
 %% manuscript produces a one-column, double-spaced document
 
 \begin{document}
-
+\linespread{1.6}
    \title{On the Construction of New Stellar  Classification Templates Library for LAMOST Spectra Analysis Pipeline
 %\,$^*$
 %\footnotetext{$*$ Supported by the National Natural Science Foundation of China.}
@@ -40,18 +40,22 @@ Wei Peng
       \inst{1,2}
    \and Luo Ali*
       \inst{1,3}
-\and Wang Fengfei
-      \inst{1}
 \and Li Yinbi
-      \inst{1}
-\and Zhang Jiannan
       \inst{1}
 \and Pan Jingchang
       \inst{3}
+\and Wang Fengfei
+      \inst{1}
+\and Zhang Jiannan
+      \inst{1}
           \and Tu Liangping
        \inst{1,4}
        	\and Jiang Bin
        \inst{3}
+       	\and Yang Haifeng
+       \inst{1,2,5}
+       	\and Ren Juanjuan
+       \inst{1,2}
     \and Zhao Yongheng
       \inst{1}
 \and Chen Jianjun
@@ -62,6 +66,8 @@ Wei Peng
       \inst{1}
 \and Hou Wen
       \inst{1,2}
+\and Jin Ge
+ \inst{6}
  \and Kong Xiao
       \inst{1,2}
     \and Liu Jie
@@ -71,19 +77,23 @@ Wei Peng
     \and Wu Yue
       \inst{1}
     \and Yi Zhenping
-      \inst{1,3}
+      \inst{1,2,3}
 }
 %% Here is an example of three authors come from different institutes.
 %% For single author or all the authors from an institute, use "\inst{}" only
    \institute{
     Key Laboratory of Optical Astronomy,National Astronomical Observatories,  Chinese Academy of Sciences, Beijing, 100012, China
-      {\it lal@lamost.org}\\
+      {\it lal@nao.cas.cn weipeng@nao.cas.cn}\\
 	  \and
     University of Chinese Academy of Sciences, Beijing, 100049, China\\
  	   \and
     School of Mechanical, Electrical and Information Engineering, Shandong University,Weihai, 264209, China\\
        \and
    School of Science, Liaoning University of Science and Technology,  Anshan, 144051, China
+\and
+School of Computer Science and Technology, Taiyuan University of Science and Technology,Taiyuan 030024, China
+\and 
+University of Science and Technology of China, Hefei 230026, China
 % % Please give the E-mail address of the author, to whom future correspondence and
 % offprint requests will be sent.
    }
@@ -91,22 +101,23 @@ Wei Peng
    \date{Received~~2009 month day; accepted~~2009~~month day}
 
 \abstract{
-The aim of LAMOST Spectra Analysis Pipeline (also called 1D Pipeline) is to classify and measure the spectra of objects observed in the survey.
-Stars are classified into different sub-classes by matching to spectra templates.
-To make the classification better and reliable, a new LAMOST stellar spectral classification templates library is constructed.
-This paper presents the construction of the templates through the Principal Component Analysis(PCA) of about one million LAMOST stellar spectra.
-These spectra were selected from all released 1,946,429 stellar spectra  in LAMOST Data Release One (DR1).
-Convolved  with the SDSS \emph{ugriz} filter  curve, each spectrum is assigned a pseudo g-r color (hereafter g$^*$-r$^*$).
-All spectra are divided into different groups by the  g$^*$-r$^*$.
-Additional groups are formed by different subclasses classified with the current pipeline.
-In addition, some special types of psectra are manually picked out to add into the groups.
-In each group,  we exclude some outliers and then apply PCA method to  the remaining  spectra.
-All spectra are reconstructed using the first few principal components and the weighted average spectra are constructed as the template spectra in the groups.
-Each template spectrum  is labeled a MK  class  by comparing with some label-known templates and the spectra of MK standard stars  .
-All the templates are visually inspected and  some low-quality spectra are excluded.
-Additionally, some unlabeled or wrongly labeled spectra are relabeled  or abandoned.
-The finally left spectra compose the template library.
-The first version of the library contains 164 spectra and 65 different MK classes, which is available to public on the web site.
+The LAMOST Spectra Analysis Pipeline is one of LAMOST softwares to produce final products  
+and its aim is to classify and measure the spectra observed in the survey.
+Through the pipeline, the observed stellar spectra are classified into different sub-classes by matching with spectra templates.
+Consequently, the performance of the stellar classification is greatly influenced by the quality of templates.
+%This paper presents the construction of the new stellar classification templates library for the LAMOST Spectra Analysis Pipeline.
+A new LAMOST stellar spectral classification templates library is constructed, which is supposed to  improve the precision  and credibility  of the stellar classification.
+The stellar spectra used to construct the templates are completely selected from  LAMOST Data Release One (DR1) and they  are gathered in 252 different groups by:
+I) pseudo g-r colors obtained by convolving the spectra  with the SDSS \emph{ugriz} filter response curve\ 
+II) the subclass labeled by the pipeline.
+%Meanwhile, some special types of spectra are manually picked out to add into the corresponding groups.
+In each group, some outliers are excluded, the Principal Component Analysis(PCA) method is applied to  the remaining  spectra,
+and all spectra are reconstructed using the first a few principal components.
+Finally, the weighted average spectra are constructed as the template spectra in the groups.
+Furthermore, each template spectrum  is labeled with a MK  class by comparing with some label-known templates and the spectra of MK standard stars.
+All templates are visually inspected to exclude some low-quality spectra.
+Meanwhile, some unlabeled or wrongly labeled spectra are relabeled  or abandoned.
+The template library is composed by the spectra left and the first version contains 164 spectra and 65 different MK classes.
 \keywords{methods: data analysis, methods: statistical, surveys}
 }
 
@@ -130,10 +141,12 @@ The first version of the library contains 164 spectra and 65 different MK classe
 %
 \section{Introduction}           %% first-level sections will be auto-capitalized
 \label{sect:intro}
-The LAMOST survey\citep{cui2012large,zhao2012lamost} contains two main parts: the LAMOST ExtraGAlactic Survey (LEGAS) and the LAMOST Experiment for Galactic Understanding and Exploration survey of Milky Way stellar structure(LEGUE, see \citet{deng2012lamost}).
-The unique design of LAMOST enables it to take 4000 spectra in a single exposure to a limiting magnitude as faint as r=19 at the resolution R=1800, which is equivalent to the design goal of r=20 for the resolution R=500.
+The LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) is a special reflecting Schmidt telescope with an effective aperture of 3.6-4.9m, a focal length of 20 m and a field of view (FOV) of 5$^\circ$ \citep{cui2012large}.
+Its design enables it to take 4000 spectra in a single exposure to a limiting magnitude as faint as r=19 at the resolution R=1800, which is equivalent to the design goal of r=20 for the resolution R=500.
 The LAMOST  therefore has great potential to efficiently survey a large volume of space for stars and galaxies.
+%The LAMOST survey\citep{zhao2012lamost} contains two main parts: the LAMOST ExtraGAlactic Survey (LEGAS) and the LAMOST Experiment for Galactic Understanding and Exploration survey of Milky Way stellar structure(LEGUE, see \citet{deng2012lamost}).
 
+LAMOST data are processed by data pipelines written specifically for the LAMOST Spectral Survey.
 
 The LAMOST spectral analysis pipeline\citep{luo2001steps,luo2004design,luo2008automated,wang2010calibration,luo2012data} is based on the specBS pipeline\citep{aihara2011eighth} for the analysis of SDSS spectra.
 This analysis code carries out $\chi^2$ fits of the spectra to templates in wavelength space (in the spirit of \cite{glazebrook1998automatic}),
@@ -150,8 +163,8 @@ Section \ref{sect:Sample} describes the used spectra from LAMOST Data Release On
 The detailed description of the template library construction steps, the related methods and the group dividing are outlined in section \ref{sect:construction}.
 The results and discussions are given in \ref{sect:Results}.
 A brief summary is given in section \ref{sect:Summary}.
-
-\section{The Spectra From LAMOST Data Release One(DR1)}
+\section{The construction of the templates library}
+\subsection{The Spectra From LAMOST Data Release One(DR1)}
 \label{sect:Sample}
 The first data release of LAMOST survey contains the spectra in the pilot survey and the first year of general survey.
 The pilot survey of LAMOST  was launched on 2011 Oct 24, and ended in June 2012.% and about 31,900 spectra were released\citep{luo2012data}.
@@ -182,7 +195,7 @@ Some other spectra are  excluded in the construction of the library, which will 
 % \cite{york2000sloan}
 
 
-\section{The construction  steps}
+
 \label{sect:construction}
 \subsection{The pseudo g-r color}
 % \cite{mcgurk2010principal} divided all selected SDSS stellar spectra into different bins by the color g-r.

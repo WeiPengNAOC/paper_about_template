@@ -1,4 +1,4 @@
-\begin{thebibliography}{41}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\selectlanguage}[1]{\relax}
 
@@ -40,9 +40,6 @@ Cui, X.-Q., Zhao, Y.-H., Chu, Y.-Q., et~al. 2012, RAA, 12, 1197
 
 \bibitem[{Danks \& Dennefeld(1994)}]{danks1994atlas}
 Danks, A.~C., \& Dennefeld, M. 1994, PASP, 382--396
-
-\bibitem[{Deng et~al.(2012)Deng, Newberg, Liu et~al.}]{deng2012lamost}
-Deng, L.-C., Newberg, H.~J., Liu, C., et~al. 2012, RAA, 12, 735
 
 \bibitem[{Falc{\'o}n-Barroso et~al.(2011)Falc{\'o}n-Barroso,
   S{\'a}nchez-Bl{\'a}zquez, Vazdekis et~al.}]{falcon2011updated}
@@ -139,10 +136,6 @@ Zhang, Y.-Y., Carlin, J.~L., Yang, F., et~al. 2012, RAA, 12, 792
 
 \bibitem[{Zhang et~al.(2013)Zhang, Deng, Liu et~al.}]{zhang2013white}
 Zhang, Y.-Y., Deng, L.-C., Liu, C., et~al. 2013, AJ, 146, 34
-
-\bibitem[{Zhao et~al.(2012)Zhao, Zhao, Chu, Jing, \& Deng}]{zhao2012lamost}
-Zhao, G., Zhao, Y.-H., Chu, Y.-Q., Jing, Y.-P., \& Deng, L.-C. 2012, RAA, 12,
-  723
 
 \bibitem[{Zhao et~al.(2013)Zhao, Luo, Oswalt, \& Zhao}]{zhao201370}
 Zhao, J., Luo, A., Oswalt, T., \& Zhao, G. 2013, AJ, 145, 169
