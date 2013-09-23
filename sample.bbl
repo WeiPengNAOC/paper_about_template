@@ -1,4 +1,4 @@
-\begin{thebibliography}{36}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\selectlanguage}[1]{\relax}
 
@@ -25,13 +25,6 @@ Bolton, A.~S., Schlegel, D.~J., Aubourg, {\'E}., et~al. 2012, AJ, 144, 144
 Breunig, M.~M., Kriegel, H.-P., Ng, R.~T., \& Sander, J. 2000, in ACM Sigmod
   Record, vol.~29, 93--104 (ACM)
 
-\bibitem[{Carlin et~al.(2012)Carlin, L{\'e}pine, Newberg
-  et~al.}]{carlin2012algorithm}
-Carlin, J.~L., L{\'e}pine, S., Newberg, H.~J., et~al. 2012, RAA, 12, 755
-
-\bibitem[{Chen et~al.(2012)Chen, Hou, Yu et~al.}]{chen2012legue}
-Chen, L., Hou, J.-L., Yu, J.-C., et~al. 2012, RAA, 12, 805
-
 \bibitem[{Cui et~al.(2012)Cui, Zhao, Chu et~al.}]{cui2012large}
 Cui, X.-Q., Zhao, Y.-H., Chu, Y.-Q., et~al. 2012, RAA, 12, 1197
 
@@ -57,10 +50,6 @@ Kriegel, H.-P., Kr{\"o}ger, P., Schubert, E., \& Zimek, A. 2009, in
 
 \bibitem[{Lee et~al.(2008)Lee, Beers, Sivarani et~al.}]{lee2008segue}
 Lee, Y.~S., Beers, T.~C., Sivarani, T., et~al. 2008, AJ, 136, 2022
-
-\bibitem[{Liu et~al.(2013)Liu, Yuan, Huo et~al.}]{liu2013lss}
-Liu, X.-W., Yuan, H.-B., Huo, Z.-Y., et~al. 2013, arXiv preprint
-  arXiv:1306.5376
 
 \bibitem[{Luo et~al.(2008)Luo, Wu, Zhao, \& Zhao}]{luo2008automated}
 Luo, A.-L., Wu, Y., Zhao, J., \& Zhao, G. 2008, in {Proc. of SPIE Vol}, vol.
@@ -112,17 +101,11 @@ Whitney, C. 1983, Astronomy and Astrophysics Supplement Series, 51, 443
 \bibitem[{Wu et~al.(2011)Wu, Luo, Li et~al.}]{wu2011automatic}
 Wu, Y., Luo, A.-L., Li, H.-N., et~al. 2011, RAA, 11, 924
 
-\bibitem[{Yang et~al.(2012)Yang, Carlin, Liu et~al.}]{yang2012legue}
-Yang, F., Carlin, J.~L., Liu, C., et~al. 2012, RAA, 12, 781
-
 \bibitem[{Yi et~al.(2013)Yi, Luo, Song et~al.}]{yi2013m}
 Yi, Z., Luo, A., Song, Y., et~al. 2013, arXiv preprint arXiv:1306.4540
 
 \bibitem[{Yip et~al.(2004)Yip, Connolly, Berk et~al.}]{yip2004spectral}
 Yip, C., Connolly, A., Berk, D.~V., et~al. 2004, AJ, 128, 2603
-
-\bibitem[{Zhang et~al.(2012)Zhang, Carlin, Yang et~al.}]{zhang2012legue}
-Zhang, Y.-Y., Carlin, J.~L., Yang, F., et~al. 2012, RAA, 12, 792
 
 \bibitem[{Zhang et~al.(2013)Zhang, Deng, Liu et~al.}]{zhang2013white}
 Zhang, Y.-Y., Deng, L.-C., Liu, C., et~al. 2013, AJ, 146, 34
