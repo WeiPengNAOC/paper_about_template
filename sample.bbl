@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\selectlanguage}[1]{\relax}
 
@@ -20,10 +20,6 @@ Bochanski, J.~J., West, A.~A., Hawley, S.~L., \& Covey, K.~R. 2007, AJ, 133,
 \bibitem[{Bolton et~al.(2012)Bolton, Schlegel, Aubourg
   et~al.}]{bolton2012spectral}
 Bolton, A.~S., Schlegel, D.~J., Aubourg, {\'E}., et~al. 2012, AJ, 144, 144
-
-\bibitem[{Breunig et~al.(2000)Breunig, Kriegel, Ng, \& Sander}]{breunig2000lof}
-Breunig, M.~M., Kriegel, H.-P., Ng, R.~T., \& Sander, J. 2000, in ACM Sigmod
-  Record, vol.~29, 93--104 (ACM)
 
 \bibitem[{Cui et~al.(2012)Cui, Zhao, Chu et~al.}]{cui2012large}
 Cui, X.-Q., Zhao, Y.-H., Chu, Y.-Q., et~al. 2012, RAA, 12, 1197
@@ -51,6 +47,10 @@ Kriegel, H.-P., Kr{\"o}ger, P., Schubert, E., \& Zimek, A. 2009, in
 \bibitem[{Lee et~al.(2008)Lee, Beers, Sivarani et~al.}]{lee2008segue}
 Lee, Y.~S., Beers, T.~C., Sivarani, T., et~al. 2008, AJ, 136, 2022
 
+\bibitem[{Liu et~al.(2013)Liu, Yuan, Huo et~al.}]{liu2013lss}
+Liu, X.-W., Yuan, H.-B., Huo, Z.-Y., et~al. 2013, arXiv preprint
+  arXiv:1306.5376
+
 \bibitem[{Luo et~al.(2008)Luo, Wu, Zhao, \& Zhao}]{luo2008automated}
 Luo, A.-L., Wu, Y., Zhao, J., \& Zhao, G. 2008, in {Proc. of SPIE Vol}, vol.
   7019, 701935--1
@@ -73,12 +73,9 @@ Luo, A.-L., et~al. 2013, in preparation
   Ivezi{\'c}}]{mcgurk2010principal}
 McGurk, R.~C., Kimball, A.~E., \& \v{Z}eljko Ivezi{\'c} 2010, AJ, 139, 1261
 
-\bibitem[{Tu et~al.(2010)Tu, Luo, Wu, \& Zhao}]{tu2010method}
-Tu, L., Luo, A., Wu, F., \& Zhao, Y. 2010, Science China Physics, Mechanics and
-  Astronomy, 53, 1928
-
-\bibitem[{Tu et~al.(2009)Tu, Luo, Wu, Wu, \& Zhao}]{tu2009new}
-Tu, L.-P., Luo, A.-L., Wu, F.-C., Wu, C., \& Zhao, Y.-H. 2009, RAA, 9, 635
+\bibitem[{Singh et~al.(1998)Singh, Gulati, \& Gupta}]{singh1998stellar}
+Singh, H.~P., Gulati, R.~K., \& Gupta, R. 1998, Monthly Notices of the Royal
+  Astronomical Society, 295, 312
 
 \bibitem[{\v{Z}eljko Ivezi{\'c} et~al.(2008)\v{Z}eljko Ivezi{\'c}, Sesar,
   Juri{\'c} et~al.}]{ivezic2008milky}
@@ -91,9 +88,6 @@ Wang, F., Luo, A., \& Zhao, Y. 2010, in {SPIE Astronomical Telescopes and
 
 \bibitem[{Wang et~al.(2013)Wang, Zhang, Luo et~al.}]{wang2013effects}
 Wang, F., Zhang, H., Luo, A.-L., et~al. 2013, arXiv preprint arXiv:1306.1600
-
-\bibitem[{Wei et~al.(2013)Wei, Luo, Li et~al.}]{wei2013mining}
-Wei, P., Luo, A., Li, Y., et~al. 2013, MNRAS, 431, 1800
 
 \bibitem[{Whitney(1983)}]{whitney1983principal}
 Whitney, C. 1983, Astronomy and Astrophysics Supplement Series, 51, 443
