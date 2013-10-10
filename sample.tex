@@ -166,7 +166,7 @@ Consequently, the performance of the stellar classification greatly depends on t
 
 
 Considering the similiarity of  the LAMOST stellar spectra with other survey spectra,
-some  spectra  selected from SDSS and MILES \citep{falcon2011updated} are used as templates for stellar classification in current LAMOST spectra analysis pipeline .
+some  spectra  selected from SDSS and MILES \citep{falcon2011updated} are used as templates for stellar classification in current LAMOST spectra analysis pipeline.
 The current library contains 36 stellar subclasses plus 20 subclasses specially for A-type star.
 The former 36 templates are constructed from a set of SDSS spectra \citep{wang2010calibration}.
 while the latter 20 A-type template spectra are picked out  from MILES library .
@@ -380,7 +380,7 @@ Group ID&Subclass&Amount&&Group ID&Subclass&Amount&&Group ID&Subclass&Amount\\
 181&A2I&10&&201&Binary&170&&221&M1&19953\\
 182&A2IV&1692&&202&Carbon&178&&222&M2&17243\\
 183&A2V&5761&&203&CarbonWD&6&&223&M3&9749\\
-184&A3I&37&&204&CV&17&&224&M4&3860\\
+184&A3I&37&&204&CV&27&&224&M4&3860\\
 185&A3IV&2084&&205&EM&63&&225&M5&855\\
 186&A3V&2080&&206&F0&27808&&226&M6&412\\
 187&A4III&926&&207&F2&44192&&227&M7&259\\
@@ -415,10 +415,10 @@ Although the spectra  in the same group are very similiar with each other, there
 including the effect of instellar extinction on the continiuum, strong noises, existence of unusual spectral features and other issues.
 Obviously, these outliers should be excluded to generate much purer spectra for construction of template spectra.
 
-In our work, the LOcal Outlier Probabilities (LoOP, see \cite{kriegel2009loop} ) method is used to exclude these outliers.
+In our work, the LOcal Outlier Probabilities (LoOP, see \cite{kriegel2009loop} for the detailed description) method is used to exclude these outliers.
 LoOP is a local density based method that uses statistical concepts to output the final score.
 The LoOP score represents the probability that a particular point is a local density outlier.
-The the detailed description of LoOP is shonw in \citep{kriegel2009loop}:
+
 %\begin{enumerate}
 %					\item    ($k$-$distance$ of an object $p$) For any
 %					positive integer $k$,  the $k$-distance  (The distance measurement function used in our work is the cosine distance $d=1-\frac{A*B}{|A|*|B|}$) of object $p$, denoted as
@@ -508,69 +508,82 @@ We use the following ten steps to construct the new stellar template library for
       \item Take the SNR weighted average spectrum as the template spectrum in each group.
      \end{enumerate}
 
-\subsubsection{Class Labeling}
-Following  above ten steps, the template spectra are successfully constructed in 216 groups  (nearly 92\%).
-Other 17 groups fail mainly because of lacking enough high quality spectra.
-Each spectrum should be labeled a subclass for latter usage in classification.
-We compare these spectra with three libraries and then label each spectrum a subclass.
-
- \citet{danks1994atlas} presented spectra  for MK standards in the wavelength range    5800\AA-10200\AA.
-The stars cover the normal spectral types from O to M and    luminosity types I, III, and V.
-The projected slit width along the dispersion is about 4\AA\ and the resolution R is about 1200.
-Two wavelength ranges [7500\AA,7700\AA] and [6800\AA,7000\AA] are masked to get rid of the strong telluric lines left in the spectra.
-We decrease the resolution of our templates to R~1200 by convolving a gaussian function.
-All template spectra and standard spectra are unified into the wavelength range [6100\AA,9000\AA] with a fixed step 4\AA.
+\subsubsection{Labeling stellar spectral subclass for template spectra}
+Following  above ten steps, the template spectra are successfully constructed in 216 groups  (nearly 92\%) while
+other 17 groups fail mainly due to the lackness of enough spectra with high quality.
+After matching with these template spectra, each observed spectrum in the LAMOST survey will be classfied as a stellar spectral subtype given by the best matched template spectrum.
+Therefore, it is also an important step to label stellar spectral subclass for these constructed template spectra.
+To get better stellar spectral subclass, we use following two steps to label these template spectra.
+\begin{enumerate}
+\item First, each template spectrum are matching with three libraries and the first four closest spectra in each library are chosen.
+That is to say, there are 12 differnt spectra from three differnt libraries for each template spectrum in our library.
+The three libraries used are described as follows:
+    \begin{itemize}
+         \item \citet{danks1994atlas} presented spectra  for MK standards in the wavelength range    5800\AA-10200\AA.
+        The stars cover the normal spectral types from O to M and    luminosity types I, III, and V.
+        The projected slit width along the dispersion is about 4\AA\ and the resolution R is about 1200.
+        Two wavelength ranges [7500\AA,7700\AA] and [6800\AA,7000\AA] are masked to get rid of the strong telluric lines left in the spectra.
+        We decrease the resolution of our templates to R~1200 by convolving a gaussian function.
+        All template spectra and standard spectra are unified into the wavelength range [6100\AA,9000\AA] with a fixed step 4\AA.
 %For each template spectrum, the first four  closest  are chosen and the corresponding spectra are drawn together with the template spectra.
 %Those figures are used for following visual inspection.
 
- \citet{bolton2012spectral} described the detail of the pipeline for SDSS III and published the template used on the web page\footnote{\url{http://www.sdss3.org/svn/repo/idlspec2d/tags/v5_4_45/templates/}}.
-For stellar spectral classification,  123 templates created from the full database of Indo-U.S. spectra are provided.
-Each spectrum are labeled a MK class by matching with POLLUX database.
-The resolution R of these 123 spectra is about 2000 and the wavelength coverage is from 3500\AA\ to 11200\AA.
-These spectra are unified into the wavelength range [3800\AA,9000\AA] with a fixed step 1\AA\ similar with the spectra in the library .
+         \item \citet{bolton2012spectral} described the detail of the pipeline for SDSS III and published the template used. %on the web % page\footnote{\url{http://www.sdss3.org/svn/repo/idlspec2d/tags/v5_4_45/templates/}}.
+        For stellar spectral classification,  123 templates created from the full database of Indo-U.S. spectra are provided.
+        Each spectrum are labeled a MK class by matching with POLLUX database.
+        The resolution R of these 123 spectra is about 2000 and the wavelength coverage is from 3500\AA\ to 11200\AA.
+        These spectra are unified into the wavelength range [3800\AA,9000\AA] with a fixed step 1\AA\ similar with the spectra in the library .
 %Similarly, for each template spectrum, the first four  closest are chosen and the corresponding spectra are drawn together with the template spectra.
 %And those figures are also used for following visual inspection.
 
-As introduced above, the current library used for stellar classification in LAMOST contains 36 classes plus 20 subclasses specially for A-type star.
-The resolution R of these 56 spectra is about 2000 and the wavelength coverage is from 3800\AA\ to 9200\AA.
-These spectra are unified into the wavelength range [3800\AA,9000\AA] with a fixed step 1\AA\ similar with the spectra in the library .
+        \item As introduced before, the current library used for stellar classification in LAMOST spectra analysis pipeline contains 36 classes plus 20 subclasses specially for A-type star.
+        The resolution R of these 56 spectra is about 2000 and the wavelength coverage is from 3800\AA\ to 9200\AA.
+        These spectra are unified into the wavelength range [3800\AA,9000\AA] with a fixed step 1\AA\ similar with the spectra in the library .
 %Similarly, for each template spectrum, the first four  closest are chosen and the corresponding spectra are drawn together with the template spectra.
 %And those figures are also used for following visual inspection.
+    \end{itemize}
 
-Each template spectrum is visually inspected by checking the three figures drawn above.
-And then each spectrum is labeled a MK class.
+\item Visual inspection is carried out  after automatic  matching with spectra library.
+Each template spectrum is visually inspected by checking the matching results with 12 chosen spectra from three libraries described above.
+And then each spectrum is labeled a MK class given by the best matched spectra  visually chosen .
 Meanwhile, those template spectra with bad data or low SNR are excluded.
 Finally,  there are 164 spectra and 65 different MK classes are left in the template library.
+And these spectra are publicly available on the web site\footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
+\end{enumerate}
+
+\subsection{The new template library used in the LAMOST spectra analysis pipeline}
+
+A new template library used in the LAMOST spectra analysis pipeline is fromed by combining the newly constructed templates and templates in current pipeline.
+These subclasses whose template spectra have been newly constructed are removed from the current library,
+and the template spectra of other subclasses are added into newly constructed template library in ourwork.
+The current library has been used in the new new version of LAMOST spectra analysis pipeline for spectra after data release one.
 
 
 \section{Results and  discussions}
 \label{sect:Results}
-A updated library is formed after adding some spectra of new subclasses and replacing some spectra.
-These spectra of the types not existing in our library are left.
-The library of the current version (V1.0) is publicly available on the web site\footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
-The current library has been used in the new new version of LAMOST 1D pipeline for spectra after data release one.
+
 \subsection{Examples}
 \label{sect:Examples}
-Here we choose four typical groups  (Group 59,180 ,207 and 237)  to  discuss in detail.
-The main information of these groups is shown in Table.\ref{tab2}.
-The MK classes are F6V, A1IV, CV and M2 respectively.
+Here we choose four typical groups  (Group 59,179 ,204 and 222)  to  discuss the construction process and the constructed template spectra in detail.
+The main information of these groups is shown in Table \ref{tab2}.
+The MK classes are F5V, A1IV, CV and M2 respectively.
 The finally constructed template spectra of these groups are  shown in Fig.\ref{Fig6}.
 
 
 \begin{table}
 \bc
 \begin{minipage}[]{100mm}
-\caption[]{The main information of groups 59,180, 207 and 237\label{tab2}}\end{minipage}
+\caption[]{The main information of groups 59,179, 204 and 222\label{tab2}}\end{minipage}
 \setlength{\tabcolsep}{1pt}
 \small
  \begin{tabular}{c|r|r|c|c|c|c}
   \hline\hline
 Group ID&All spectra&used spectra&Subclass&Subclass1&Subclass2&Subclass3\\
   \hline
-59  &18534    &3048  &F4V    &F3V/F5V  &F8III-IV &F5   \\
-180 &653    &381  &A1IV    &A4V/A1V  &A2V&A1V    \\
-207 &27     &13  &CV    &-  &-&-    \\
-237 &17231     &325  &M2    &M1/M0  &M1.5V/M3V&M2/M1    \\
+59  &18534    &3048  &F5V    &F3V/F5V  &F1V &F5   \\
+179 &653    &381  &A1IV    &A4V/A1V  &A2V&A1V    \\
+204 &27     &13  &CV    &-  &-&-    \\
+222 &17231     &325  &M2    &M1/M0  &M1.5V/M3V&M2/M1    \\
  \hline\hline
 \end{tabular}
 \ec
@@ -584,30 +597,21 @@ Subclass3 is the best fit Mk class with  \citet{luo2012dr1}.}
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f6.eps}
-   \caption{The template spectra of groups 59,180, 207 and 237.
+   \caption{The template spectra of groups 59,179, 204 and 222.
    }
    \label{Fig6}
 \end{figure}
 
 \textbf{Group:59}
 This group contains the spectra in the color $g^*$-$r^*$ range [-0.34,-0.32].
-There are totally 18,534 spectra and 3,048 spectra are selected from the first 5,000 spectra with the highest SNR.
-As shown in Fig \ref{Fig91}, the spectrum is very close to F3V/F5V in  \citet{bolton2012spectral}.
-Consequently, the template spectrum is labeled as 'F4V'.
-\begin{figure}
-   \centering
-   \includegraphics[width=10cm, angle=0,clip]{f91.eps}
-   \caption{The comparison of the template spectrum in group 59 with  F3V/F5V in  \citet{bolton2012spectral}.
-The black line is the spectrum constructed in our work.
-The red one is the closest spectrum in  \citet{bolton2012spectral}.
-   }
-   \label{Fig91}
-\end{figure}
 
-As shown in Fig \ref{Fig71},  the variance of the first  principal component  exceeds more than 99\% of the total variance of the original data.
-That is due to the high similarity of the spectra in the group.
-Consequently, the reconstructed spectra using first two  principal components are nearly similar to the origin spectra (see Fig \ref{Fig81}).
-
+There are totally 18,534 spectra and the first 5,000 spectra with the highest SNR are chosen.
+Among these spectra, 4,024 spectra are used to get the principal components which are used in the spectra reconstruction.
+As shown in Fig \ref{Fig71},  the variance of the first  principal component  exceeds more than 99\% due to the high similarity of the spectra in the group.
+Consequently, the reconstructed spectra using first two  principal components are nearly similar to the original spectra (see Fig \ref{Fig81}).
+Afetr excluding outliers, 3,048 spectra are left to construct the template spectrum.
+The stellar spectral subclass is finally labled as `F5V'.
+As shown in Fig \ref{Fig91}, the template spectrum is close to the F3V/F5V type spectrum in  \citet{bolton2012spectral}.
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f71.eps}
@@ -619,37 +623,40 @@ Consequently, the reconstructed spectra using first two  principal components ar
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f81.eps}
-   \caption{Three examples of reconstructed spectra in group 59
+   \caption{Three examples of reconstructed spectra in group 59.
+The black lines are the original spectra and the red lines are reconstructed spectra.
    }
    \label{Fig81}
 \end{figure}
-
-
-\textbf{Group:180}
-This group contains the spectra classified as `A1IV' by pipeline.
-There are totally 653 spectra and 381 spectra are selected.
-The spectrum is labeled as `A1IV' following the group selection criteria.
-As shown in Fig \ref{Fig92}, the SNR of the template is a little larger than the template in  \citet{luo2012dr1} while these two spectrum are nearly close to each other.
 \begin{figure}
    \centering
-   \includegraphics[width=10cm, angle=0,clip]{f92.eps}
-   \caption{The comparison of the template spectrum in group 59 with  A1IV in  \citet{luo2012dr1}.
+   \includegraphics[width=10cm, angle=0,clip]{f91.eps}
+   \caption{The comparison of the template spectrum in group 59 with  F3V/F5V type spectrum  in  \citet{bolton2012spectral}.
 The black line is the spectrum constructed in our work.
-The red one is the closest spectrum in  \citet{luo2012dr1}.
+The red one is the closest spectrum in  \citet{bolton2012spectral}.
    }
-   \label{Fig92}
+   \label{Fig91}
 \end{figure}
 
-Similar with group 59, the variance of the first  principal component also exceeds more than 99\% of the total variance of the original data (see Fig \ref{Fig72}).
-However, there are not as many spectra as in group 59.
-Consequently, some  spectra are not well reconstructed (as shown in Fig \ref{Fig82}).
-In spite of this, the template spectrum is well constructed after excluding these badly reconstructed spectra.
 
-%The results of this group show that
- \begin{figure}
+
+\textbf{Group:179}
+This group contains the spectra classified as `A1IV' by current LAMOST spectra analysis pipeline.
+
+There are totally 653 spectra in this group.
+Among these spectra, 517 spectra are used to get the principal components which are used in the spectra reconstruction.
+Similar with group 59, the variance of the first  principal component also exceeds more than 99\%  (see Fig \ref{Fig72}).
+There are not as many spectra as in group 59 and a fraction of  spectra are not well reconstructed (as shown in Fig \ref{Fig82}).
+In spite of this, the template spectrum is well constructed after excluding these badly reconstructed spectra.
+Afetr excluding outliers, 381 spectra are left to construct the template spectrum.
+The stellar spectral subclass is finally labled as `A1IV',
+which coincides with the group selection criteria.
+The template spectra of group 179 is  shown in Fig \ref{Fig92},
+and we cans see that the SNR of the template is a little larger than the template in  current library.
+\begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f72.eps}
-   \caption{The first four eigen spectra (principal components) of group 180.
+   \caption{The first four eigen spectra (principal components) of group 179.
    }
    \label{Fig72}
 \end{figure}
@@ -657,26 +664,41 @@ In spite of this, the template spectrum is well constructed after excluding thes
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f82.eps}
-   \caption{Three examples of reconstructed spectra in group 180
+   \caption{Three examples of reconstructed spectra in group 179.
+The black lines are the original spectra and the red lines are reconstructed spectra.
    }
    \label{Fig82}
 \end{figure}
+\begin{figure}
+   \centering
+   \includegraphics[width=10cm, angle=0,clip]{f92.eps}
+   \caption{The comparison of the template spectrum in group 59 with  A1IV type template in current library.
+The black line is the spectrum constructed in our work.
+The red one is the closest spectrum in current library.
+   }
+   \label{Fig92}
+\end{figure}
 
 
-\textbf{Group:207}
-This group contains the spectra classified as `CV'.
-There are totally 27 spectra and 13 spectra are selected.
-The spectrum is labeled as `CV' following the group selection criteria.
 
+
+\textbf{Group:204}
+This group contains the spectra classified as `CV' by current LAMOST spectra analysis pipeline.
+
+There are totally 27 spectra in this group.
+Among these spectra, 23 spectra are used to get the principal components which are used in the spectra reconstruction.
 Compared with normal stars, the spectra of CV stars are these with strong hydrogen Balmer and helium emission lines that typically signify ongoing accretion.
-As shown in Fig \ref{Fig73}, the first two principal components show obvious and strong emission lines and the sum of the variances of these two  principal components  exceeds more than 99\% of the total variance of the original data.
+As shown in Fig \ref{Fig73}, the first two principal components show obvious and strong emission lines and the sum of the variances of these two  principal components  exceeds more than 99\%.
 Compared to normal stars misclassified as 'CV', the spectra of CV stars are almost faultlessly reconstructed (see Fig \ref{Fig83}).
 And then these misclassified spectra are excluded in the next following steps.
+Afetr excluding outliers, 17 spectra are left to construct the template spectrum and these spectra are all real CV star.
+The stellar spectral subclass is finally labled as `CV',
+which coincides with the group selection criteria.
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f73.eps}
-   \caption{The first four eigen spectra (principal components) of group 207.
-    Note that the strong lines in eigen spectra 2 are emission lines not absorption lines.
+   \caption{The first four eigen spectra (principal components) of group 204.
+    Note that the strong lines in eigen spectra\#2 are emission lines not absorption lines.
    }
    \label{Fig73}
 \end{figure}
@@ -684,16 +706,21 @@ And then these misclassified spectra are excluded in the next following steps.
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f83.eps}
-   \caption{Three examples of reconstructed spectra in group 207.
+   \caption{Three examples of reconstructed spectra in group 204.
+The black lines are the original spectra and the red lines are reconstructed spectra.
    }
    \label{Fig83}
 \end{figure}
-\textbf{Group:237}
 
-This group contains the spectra classified as `M2'.
+
+\textbf{Group:222}
+
+This group contains the spectra classified as `M2' by current LAMOST spectra analysis pipeline.
+
 %All M-type spectra are visually inspected to classify the subclass.
-There are totally 17,231 spectra and 325 spectra are selected from the first 5,000 spectra with the highest SNR.
-Due to the existence of wavelength points with $flux\le0$, a large amount of  spectra are excluded in this group.
+There are totally 17,231 spectra in this group.
+Due to the existence of wavelength points with $flux\le0$, a large amount of  spectra are excluded and 325 spectra are selected from the first 5,000 spectra with the highest SNR.
+
 The spectrum is labeled as `M2' following the group selection criteria.
 
 
@@ -703,16 +730,16 @@ The selected spectra are not well reconstructed in the blue arm (as shown in Fig
 In spite of this, the template spectrum is also well constructed.
 
 
-To check the quality, we choose the M2-type template spectrum in the current template library \citep{wang2010calibration} and compare it with the template spectrum of group 237 (see Fig \ref{Fig94} upper panel).
+To check the quality, we choose the M2-type template spectrum in the current template library \citep{wang2010calibration} and compare it with the template spectrum of group 222 (see Fig \ref{Fig94} upper panel).
  \citet{bochanski2007low}  presented template spectra of low-mass  (M0-L0) dwarfs derived from over 4000 Sloan Digital Sky Survey spectra.
-We choose the M2-type template spectrum and alsoe compare it with the template spectrum of group 237 (see Fig \ref{Fig94} bottom panel).
+We choose the M2-type template spectrum and alsoe compare it with the template spectrum of group 222 (see Fig \ref{Fig94} bottom panel).
 As shown in Fig \ref{Fig94}, we can infer that our constructed M2-type spectrum is a little better than these two spectra.
 
 
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f74.eps}
-   \caption{The first four eigen spectra (principal components) of group 237.
+   \caption{The first four eigen spectra (principal components) of group 222.
    }
    \label{Fig74}
 \end{figure}
@@ -720,7 +747,7 @@ As shown in Fig \ref{Fig94}, we can infer that our constructed M2-type spectrum 
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f84.eps}
-   \caption{Three examples of reconstructed spectra in group 237.
+   \caption{Three examples of reconstructed spectra in group 222.
    }
    \label{Fig84}
 \end{figure}
