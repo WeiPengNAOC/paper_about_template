@@ -838,16 +838,19 @@ That is because these template spectra are constructed from  a healthy sum of sp
 
 \subsubsection{Remaining problems}
 
-The result shows that our constructed template spectra can be used in the classification of observed stellar spectra in LAMOST survey.
-However, there are also some problems needing to solve.
+The result shows that our constructed template spectra can be used in the stellar classification in LAMOST survey.
+However, there are still some problems needing to solve.
 \begin{enumerate}
 \item
 We notice that most of our template spectra are main sequence stars.
-To construct the template spectra of some other rare types such as  K-type giants, DC and DZ white dwarfs,
-some spectra  need to be labeled manually or picked out by other methods.
+%To construct the template spectra of some other rare types such as  K-type giants, DC and DZ white dwarfs,
+%some spectra  need to be labeled manually or picked out by other methods.
+In order to construct the template library which contains as many typs of spectra as possible,
+such as  K-type giants, DC and DZ white dwarfs \citep{si2013search},
+we need to add these rare spectra into our template library.    
 \item
-We use three libraries to label each template.
-However, how to label the template spectra better is also a remaining problem.
+At present, we use  three libraries to label our template spectra.
+However, how to label them better is still a remaining problem.
 
 \item
 In addition, there are some outliers excluded in each group while constructing the templates.
@@ -858,16 +861,16 @@ It is also worth of studying these objects and finding rare types even new types
 
 \section{Summary}
 \label{sect:Summary}
-To improve the precision  and credibility  of the stellar classification,
-A new LAMOST stellar spectral classification templates library is constructed.
-We select about 750,0000 stellar spectra from LAMOST Data Release One  (DR1) and then we gather them  in 233 different groups by proposed pseudo g-r colors and the subclass labeled by the pipeline.
-Following the proposed contruction steps, including excluding outliers using LoOP, spectral PCA reconstruction etc.,
+In order to improve the precision  and credibility  of the stellar classification,
+a new LAMOST stellar spectral classification templates library is constructed.
+We select about 750,0000 stellar spectra from LAMOST Data Release One  (DR1) and gather them  in 233 different groups by proposed pseudo g-r colors and the subclass labeled by current LAMOST spectra analysis pipeline.
+Through the proposed contruction steps, including excluding outliers using LoOP, spectral PCA reconstruction etc.,
 the weighted average spectra are constructed as the template spectra in the groups.
-Afterwards, each template spectrum  is labeled with a MK  class by comparing with three libraris and visual inspection.
-Some low-quality spectra are excluded afetr visual inspection .
+Afterwards, each template spectrum  is labeled with a MK type by comparing with three libraris and visual inspection,
+and some low-quality spectra are excluded afetr visual inspection .
 Meanwhile, some unlabeled or wrongly labeled spectra are relabeled  or abandoned.
-The template library is composed by the spectra left and the first version contains 164 spectra and 65 different MK classes.
-The new templates library has been used in new version of LAMOST Spectra Analysis Pipeline and is published on the website \footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
+Finally, the new stellat classification templates library LAMOST spectra analysis pipeline consists of 164 spectra and 65 different MK classes.
+The new templates library has been used for new version of LAMOST Spectra Analysis Pipeline and is published on the website \footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
 
 
 

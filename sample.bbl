@@ -1,4 +1,4 @@
-\begin{thebibliography}{29}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\selectlanguage}[1]{\relax}
 
@@ -72,6 +72,9 @@ Luo, A.-L., et~al. 2013, in preparation
 \bibitem[{McGurk et~al.(2010)McGurk, Kimball, \& \v{Z}eljko
   Ivezi{\'c}}]{mcgurk2010principal}
 McGurk, R.~C., Kimball, A.~E., \& \v{Z}eljko Ivezi{\'c} 2010, AJ, 139, 1261
+
+\bibitem[{Si et~al.(2013)Si, Luo, Zhang et~al.}]{si2013search}
+Si, J., Luo, A., Zhang, J., et~al. 2013, arXiv preprint arXiv:1309.1883
 
 \bibitem[{Singh et~al.(1998)Singh, Gulati, \& Gupta}]{singh1998stellar}
 Singh, H.~P., Gulati, R.~K., \& Gupta, R. 1998, Monthly Notices of the Royal
