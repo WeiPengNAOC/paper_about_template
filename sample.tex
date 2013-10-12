@@ -16,12 +16,13 @@
 \usepackage{graphicx,times}
 \usepackage{natbib}
 \usepackage{amssymb,amsmath}
+\usepackage{multirow}
 \bibpunct{(}{)}{;}{a}{}{,}
 
 
 \usepackage[a4paper=true,dvipdfm=true,pagebackref=true]{hyperref}
 % \hypersetup{pdftitle = The title of my PDF, pdfauthor = My name, pdfsubject= The subject, pdfkeywords = keyword1 keyword2 keyword3}
-\hypersetup{colorlinks = true, linkcolor = green, anchorcolor = red, citecolor = blue, filecolor = red, pagecolor = red, urlcolor = red}
+%\hypersetup{colorlinks = true, linkcolor = green, anchorcolor = red, citecolor = blue, filecolor = red, pagecolor = red, urlcolor = red}
 
 %% manuscript produces a one-column, double-spaced document
 %\linespread{1.6}
@@ -38,7 +39,7 @@
    \author{
 Peng Wei
       \inst{1,2}
-   \and  Ali* Luo
+   \and  Ali Luo*
       \inst{1,3}
 \and  Yinbi Li
       \inst{1}
@@ -60,6 +61,8 @@ Peng Wei
       \inst{1}
 \and  Bing Du
       \inst{1}
+\and  Yanxin Guo
+      \inst{1}
 \and  Wen Hou
       \inst{1,2}
 \and  Ge Jin
@@ -78,6 +81,8 @@ Peng Wei
        \inst{1,2,5}
     \and  Zhenping Yi
       \inst{1,2,3}
+    \and  Fang Zuo
+      \inst{1}
 }
 %% Here is an example of three authors come from different institutes.
 %% For single author or all the authors from an institute, use "\inst{}" only
@@ -125,7 +130,7 @@ All template spectra are visually inspected, and 52 spectra are abadoned due to 
 Furthermore, the MK classification for each template spectrum is manually determined by comparing with three libraries of label-known templates with known MK class.
 Meanwhile, some unlabeled or wrongly labeled spectra are relabeled  or abandoned.
 And we finally obtain 164 new template spectra with 65 different MK classes.
-The template library is composed by the spectra left and the first version contains 164 spectra and 65 different MK classes.
+The template library is composed by the spectra left and the first version contains 164 spectra and 59 different MK classes.
 \keywords{methods: data analysis, methods: statistical, surveys}
 }
 
@@ -365,7 +370,7 @@ The distribution of these groups is as shown in Table \ref{tab1}.
 \bc
 \begin{minipage}[]{100mm}
 \caption[]{The number distribution of different subclasses\label{tab1}}\end{minipage}
-\setlength{\tabcolsep}{1pt}
+%\setlength{\tabcolsep}{1pt}
 \small
  \begin{tabular}{clr|lclr|lclr}
   \hline\hline
@@ -547,27 +552,28 @@ The three libraries used are described as follows:
 Each template spectrum is visually inspected by checking the matching results with 12 chosen spectra from three libraries described above.
 And then each spectrum is labeled a MK class given by the best matched spectra  visually chosen .
 Meanwhile, those template spectra with bad data or low SNR are excluded.
-Finally,  there are 164 spectra and 65 different MK classes are left in the template library.
+Finally,  there are 164 spectra and 59 different MK classes  left in the template library.
 And these spectra are publicly available on the web site\footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
 \end{enumerate}
 
+
+
+
+\section{Results and  discussions}
+\label{sect:Results}
 \subsection{The new template library used in the LAMOST spectra analysis pipeline}
 
 A new template library used in the LAMOST spectra analysis pipeline is fromed by combining the newly constructed templates and templates in current pipeline.
 These subclasses whose template spectra have been newly constructed are removed from the current library,
 and the template spectra of other subclasses are added into newly constructed template library in ourwork.
 The current library has been used in the new new version of LAMOST spectra analysis pipeline for spectra after data release one.
+%\subsubsection{Examples}
+%\label{sect:Examples}
 
-
-\section{Results and  discussions}
-\label{sect:Results}
-
-\subsection{Examples}
-\label{sect:Examples}
 Here we choose four typical groups  (Group 59,179 ,204 and 222)  to  discuss the construction process and the constructed template spectra in detail.
 The main information of these groups is shown in Table \ref{tab2}.
 The MK classes are F5V, A1IV, CV and M2 respectively.
-The finally constructed template spectra of these groups are  shown in Fig.\ref{Fig6}.
+The finally constructed template spectra of these groups are  shown in Fig \ref{Fig6}.
 
 
 \begin{table}
@@ -594,6 +600,7 @@ Subclass1 is the best fit Mk class with  \citet{bolton2012spectral}.
 Subclass2 is the best fit Mk class with  \citet{danks1994atlas}.
 Subclass3 is the best fit Mk class with  \citet{luo2012dr1}.}
 \end{table}
+
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f6.eps}
@@ -602,9 +609,8 @@ Subclass3 is the best fit Mk class with  \citet{luo2012dr1}.}
    \label{Fig6}
 \end{figure}
 
-\textbf{Group:59}
+\emph{Group\#59 (F5V)} 
 This group contains the spectra in the color $g^*$-$r^*$ range [-0.34,-0.32].
-
 There are totally 18,534 spectra and the first 5,000 spectra with the highest SNR are chosen.
 Among these spectra, 4,024 spectra are used to get the principal components which are used in the spectra reconstruction.
 As shown in Fig \ref{Fig71},  the variance of the first  principal component  exceeds more than 99\% due to the high similarity of the spectra in the group.
@@ -640,9 +646,7 @@ The red one is the closest spectrum in  \citet{bolton2012spectral}.
 
 
 
-\textbf{Group:179}
-This group contains the spectra classified as `A1IV' by current LAMOST spectra analysis pipeline.
-
+\emph{Group\#179 (A1IV)} This group contains the spectra classified as `A1IV' by current LAMOST spectra analysis pipeline.
 There are totally 653 spectra in this group.
 Among these spectra, 517 spectra are used to get the principal components which are used in the spectra reconstruction.
 Similar with group 59, the variance of the first  principal component also exceeds more than 99\%  (see Fig \ref{Fig72}).
@@ -682,9 +686,7 @@ The red one is the closest spectrum in current library.
 
 
 
-\textbf{Group:204}
-This group contains the spectra classified as `CV' by current LAMOST spectra analysis pipeline.
-
+\emph{Group\#204 (CV)} This group contains the spectra classified as `CV' by current LAMOST spectra analysis pipeline.
 There are totally 27 spectra in this group.
 Among these spectra, 23 spectra are used to get the principal components which are used in the spectra reconstruction.
 Compared with normal stars, the spectra of CV stars are these with strong hydrogen Balmer and helium emission lines that typically signify ongoing accretion.
@@ -713,27 +715,22 @@ The black lines are the original spectra and the red lines are reconstructed spe
 \end{figure}
 
 
-\textbf{Group:222}
-
-This group contains the spectra classified as `M2' by current LAMOST spectra analysis pipeline.
-
+\emph{Group\#222 (M2)} This group contains the spectra classified as `M2' by current LAMOST spectra analysis pipeline or the spectra indentified as `M2' in \cite{yi2013m}.
 %All M-type spectra are visually inspected to classify the subclass.
 There are totally 17,231 spectra in this group.
-Due to the existence of wavelength points with $flux\le0$, a large amount of  spectra are excluded and 325 spectra are selected from the first 5,000 spectra with the highest SNR.
-
-The spectrum is labeled as `M2' following the group selection criteria.
-
-
-
-As shown in Fig \ref{Fig74}, the sum of the variances of the first two principal components  exceeds more than 99\% of the total variance of the original data.
-The selected spectra are not well reconstructed in the blue arm (as shown in Fig \ref{Fig84}).
+Due to the existence of wavelength points with $flux\le0$, a large amount of  spectra are excluded and only 325 spectra are selected from the first 5,000 spectra with the highest SNR.
 In spite of this, the template spectrum is also well constructed.
+As shown in Fig \ref{Fig74}, the sum of the variances of the first two principal components  exceeds more than 99\% of the total variance of the original data.
+The selected spectra shown in Fig \ref{Fig84} are not well reconstructed in the blue arm.
 
 
-To check the quality, we choose the M2-type template spectrum in the current template library \citep{wang2010calibration} and compare it with the template spectrum of group 222 (see Fig \ref{Fig94} upper panel).
- \citet{bochanski2007low}  presented template spectra of low-mass  (M0-L0) dwarfs derived from over 4000 Sloan Digital Sky Survey spectra.
-We choose the M2-type template spectrum and alsoe compare it with the template spectrum of group 222 (see Fig \ref{Fig94} bottom panel).
-As shown in Fig \ref{Fig94}, we can infer that our constructed M2-type spectrum is a little better than these two spectra.
+
+The stellar spectral subclass is finally labled as `M2'.
+In order to check the quality of our M2 type template spectrum,
+we compare it with currently used M2 type template in the LAMOST spectra analysis pipeline and
+M2 type template spectrum presented by \citet{bochanski2007low}.
+From Fig \ref{Fig94}, we can infer that our constructed M2-type spectrum is similiar with these two spectra.
+
 
 
  \begin{figure}
@@ -755,12 +752,13 @@ As shown in Fig \ref{Fig94}, we can infer that our constructed M2-type spectrum 
  \begin{figure}
    \centering
    \includegraphics[width=10cm, angle=0,clip]{f94.eps}
-   \caption{The comparison of the template spectrum in group 59 with  M2 in  \citet{bochanski2007low}.
-The black line is the spectrum constructed in our work.
-The red one is the closest spectrum in   \citet{bochanski2007low}.
+   \caption{The comparison of the M2 type template spectrum with  M2 in   current LAMOST library and \citet{bochanski2007low}.
+The black lines are the M2 type spectrum constructed in our work.
+The red ones are the M2 type template in   current LAMOST library and \citet{bochanski2007low}.
    }
    \label{Fig94}
 \end{figure}
+
 
 %\label{sect:Comparisons}
 %\subsection{Comparison with current templates}
@@ -772,71 +770,120 @@ The red one is the closest spectrum in   \citet{bochanski2007low}.
 %Compare with
 
 %There are also some other types of stellar spectra group
-\subsection{Discussions}
-\subsubsection{Comparison with  \cite{mcgurk2010principal}}
- \cite{mcgurk2010principal} applied PCA  to about 100,000 SEGUE spectra by dividing all spectra into 55 different bins.
-For each bin, the first four eigenspectra are published and the first one is a high SNR mean spectra.
-For the template spectra in all groups, to check the difference, we use similar method as MK class labeling to  find three closest mean spectra in  \cite{mcgurk2010principal}.
-As our  color range is wider than  \cite{mcgurk2010principal}, not all template spectra are similar with these in  \cite{mcgurk2010principal}.
-As shown in Table \ref{tab3}, the groups with groups id from 38 to 99 (totally 60 groups, not including group 71) cover nearly all mean spectra constructed by  \cite{mcgurk2010principal}.
-The finally subclasses are from A3 to K3, which coincides with sayings in  \cite{mcgurk2010principal}.
+%\subsection{Discussions}
+\subsection{Comparison with the  template library in current LAMOST spectra analysis pipeline}
+The new stellar template library consists of the  newly constructed templates and the templates in current pipeline.
+, and there are 180 spectra and 75 different MK classes  left in the combined template library.
+As shown in Table \ref{tab4},
+our constructed templates replace most templates of the  current library.
+We note that for some F, G, K  stellar spectral subclasses, there are more than one templates for one subclass.
+From the examples disscussed above,
+we can infer that the newly constructed template spectra are similiar with even a little better than the current ones.
+%Considering the differences between LAMOST spectra with spectra in other survey,%
+Considering these newly constructed spectra are constructed from  a healthy sum of observed spectra from  LAMOST DR1,
+they are  similar to the spectra observed in LAMOST survey.
+Consequently, the new stellar template library can effectively improve the precision  and credibility  of the stellar classification.
+
 \begin{table}
 \bc
 \begin{minipage}[]{100mm}
-\caption[]{The comparison with  \cite{mcgurk2010principal}  \label{tab3}}\end{minipage}
-\setlength{\tabcolsep}{1pt}
+\caption[]{The composition of the new stellar template library \label{tab4}}\end{minipage}
+%\setlength{\tabcolsep}{1pt}
 \small
- \begin{tabular}{cccc|ccccc|ccccc}
+ \begin{tabular}{cc|ccc|cccc|ccc}
   \hline\hline
-Group ID	&ESID1	&ESID2	&ESID3	& 	&Group ID	&ESID1	&ESID2	&ESID3& 	&Group ID	&ESID1	&ESID2	&ESID3\\
+\multirow{2}{*}{Spectra Type}	&	&\multicolumn{2}{c}{Template Library A}&	&\multicolumn{3}{c}{Template Library B}	&	&\multicolumn{2}{c}{Template Library C}\\
+%
+	&	&C1	&C2	&	&C1	&C2	&C3	&	&C1	&C2\\
   \hline
-38	&1	&2	&3	&	&59	&19	&20	&18	&	&80	&39	&38	&40\\
-39	&1	&2	&3	&	&60	&19	&20	&21	&	&81	&40	&41	&39\\
-40	&2	&3	&1	&	&61	&20	&23	&22	&	&82	&41	&40	&42\\
-41	&3	&2	&4	&	&62	&24	&23	&25	&	&83	&42	&41	&43\\
-42	&4	&5	&3	&	&63	&25	&24	&26	&	&84	&43	&42	&44\\
-43	&5	&6	&7	&	&64	&26	&25	&27	&	&85	&44	&43	&45\\
-44	&6	&7	&5	&	&65	&27	&26	&28	&	&86	&45	&44	&46\\
-45	&7	&8	&6	&	&66	&28	&27	&29	&	&87	&45	&46	&44\\
-46	&8	&9	&7	&	&67	&28	&29	&27	&	&88	&46	&47	&45\\
-47	&9	&10	&11	&	&68	&29	&30	&28	&	&89	&47	&48	&46\\
-48	&11	&10	&12	&	&69	&30	&29	&31	&	&90	&48	&47	&49\\
-49	&12	&11	&10	&	&70	&30	&31	&29	&	&91	&49	&48	&50\\
-50	&12	&13	&11	&	&71	&-	&-	&-	&	&92	&50	&49	&51\\
-51	&13	&14	&12	&	&72	&32	&33	&31	&	&93	&51	&50	&52\\
-52	&14	&15	&13	&	&73	&33	&32	&34	&	&94	&52	&51	&53\\
-53	&15	&14	&16	&	&74	&34	&35	&33	&	&95	&53	&52	&54\\
-54	&16	&15	&17	&	&75	&35	&34	&36	&	&96	&53	&54	&52\\
-55	&16	&17	&15	&	&76	&35	&36	&37	&	&97	&54	&55	&53\\
-56	&17	&18	&16	&	&77	&36	&37	&35	&	&98	&55	&54	&53\\
-57	&18	&17	&19	&	&78	&37	&38	&36	&	&99	&55	&54	&53\\
-58	&18	&19	&20	&	&79	&38	&37	&39	&	&	&	&	&\\
-
+O	&	&0	&0	&	&2	&2	&2	&	&2	&2\\
+B	&	&26	&6	&	&3	&3	&1	&	&27	&7\\
+A	&	&18	&18	&	&24	&24	&6	&	&24	&24\\
+F	&	&24	&7	&	&4	&4	&0	&	&24	&7\\
+G	&	&27	&8	&	&5	&5	&0	&	&27	&8\\
+K	&	&36	&5	&	&8	&8	&3	&	&39	&8\\
+M	&	&28	&10	&	&10	&10	&0	&	&28	&10\\
+other	&	&5	&5	&	&7	&7	&4	&	&9	&9\\
+\hline
+sum	&	&164	&59	&	&63	&63	&16	&	&180	&75\\
 
  \hline\hline
 \end{tabular}
 \ec
 %% place \tablecomments and \tablerefs below \end{center| and \end{center}:
 %% you may leave the table-width parameter to editors or set to your Vactual size
-\tablecomments{0.86\textwidth}{The ESID1, ESID2 and ESID3 are bin ID of the first three closest eigen spectra in \cite{mcgurk2010principal} respectively. }
+\tablecomments{0.86\textwidth}{
+Template Library A is the template library of our newly constructed templates.
+Template Library B is the current template library for LAMOST spectra analysis pipeline.
+Template Library C is the new template library for LAMOST spectra analysis pipeline.
+C1 is the amount of different template spectra in the corresponding library with the corresponding spectra  subclass.
+C2 is the amount of different MK classes in the corresponding library with the corresponding spectra  subclass.
+C3 is the amount of spectra in the current template library not replaced by newly constructed templates.\\}
 \end{table}
-\subsubsection{Comparison with current templates of LAMOST spectra analysis pipeline and  \citet{bolton2012spectral}}
-As supplements to current templates, our constructed templates replace most spectra in the current library including the A-type stellar spectra.
-From the comparisons discussed in section \ref{sect:Examples}, we can infer that newly constructed template spectra are a little better than current ones.
-
-There are 123 stellar subclasses in  \citet{bolton2012spectral}.
-These template spectra  are individual spectra in  Indo-U.S. database.
-We notice that there are 80 subclasses which contain less than 500 spectra in SDSS DR9.
-There are totally 12,897 spectra (about 1.66\% in all 773,275 spectra) and 1,062 spectra (about 0.22\% in all 475694 spectra) with SNR$>10$.
-Meanwhile, the average SNR of these spectra is about 4.93 which is much less the one of all spectra.
-In other words, there are mainly 43 stellar subclasses containing most spectra especially these spectra with high SNR.
 
 
-Considering the differences between LAMOST spectra with spectra in other survey,
-these newly constructed spectra are more reliable and more similar to the spectra observed in LAMOST survey.
-That is because these template spectra are constructed from  a healthy sum of spectra from  LAMOST DR1.
 
-\subsubsection{Remaining problems}
+
+%\subsubsection{Comparison with  \citet{bolton2012spectral}}
+%
+%
+%There are 123 stellar subclasses in  \citet{bolton2012spectral}.
+%These template spectra  are individual spectra in  Indo-U.S. database.
+%We notice that there are 80 subclasses which contain less than 500 spectra in SDSS DR9.
+%There are totally 12,897 spectra (about 1.66\% in all 773,275 spectra) and 1,062 spectra (about 0.22\% in all 475694 spectra) with SNR$>10$.
+%Meanwhile, the average SNR of these spectra is about 4.93 which is much less the one of all spectra.
+%In other words, there are mainly 43 stellar subclasses containing most spectra especially these spectra with high SNR.
+%
+%\subsubsection{Comparison with  \cite{mcgurk2010principal}}
+% \cite{mcgurk2010principal} applied PCA  to about 100,000 SEGUE spectra by dividing all spectra into 55 different bins.
+%For each bin, the first four eigenspectra are published and the first one is a high SNR mean spectra.
+%For the template spectra in all groups, to check the difference, we use similar method as MK class labeling to  find three closest mean spectra in  \cite{mcgurk2010principal}.
+%As our  color range is wider than  \cite{mcgurk2010principal}, not all template spectra are similar with these in  \cite{mcgurk2010principal}.
+%As shown in Table \ref{tab3}, the groups with groups id from 38 to 99 (totally 60 groups, not including group 71) cover nearly all mean spectra constructed by  \cite{mcgurk2010principal}.
+%The finally subclasses are from A3 to K3, which coincides with sayings in  \cite{mcgurk2010principal}.
+%\begin{table}
+%\bc
+%\begin{minipage}[]{100mm}
+%\caption[]{The comparison with  \cite{mcgurk2010principal}  \label{tab3}}\end{minipage}
+%%\setlength{\tabcolsep}{1pt}
+%\small
+% \begin{tabular}{cccc|ccccc|ccccc}
+%  \hline\hline
+%Group ID	&ESID1	&ESID2	&ESID3	& 	&Group ID	&ESID1	&ESID2	&ESID3& 	&Group ID	&ESID1	&ESID2	&ESID3\\
+%  \hline
+%38	&1	&2	&3	&	&59	&19	&20	&18	&	&80	&39	&38	&40\\
+%39	&1	&2	&3	&	&60	&19	&20	&21	&	&81	&40	&41	&39\\
+%40	&2	&3	&1	&	&61	&20	&23	&22	&	&82	&41	&40	&42\\
+%41	&3	&2	&4	&	&62	&24	&23	&25	&	&83	&42	&41	&43\\
+%42	&4	&5	&3	&	&63	&25	&24	&26	&	&84	&43	&42	&44\\
+%43	&5	&6	&7	&	&64	&26	&25	&27	&	&85	&44	&43	&45\\
+%44	&6	&7	&5	&	&65	&27	&26	&28	&	&86	&45	&44	&46\\
+%45	&7	&8	&6	&	&66	&28	&27	&29	&	&87	&45	&46	&44\\
+%46	&8	&9	&7	&	&67	&28	&29	&27	&	&88	&46	&47	&45\\
+%47	&9	&10	&11	&	&68	&29	&30	&28	&	&89	&47	&48	&46\\
+%48	&11	&10	&12	&	&69	&30	&29	&31	&	&90	&48	&47	&49\\
+%49	&12	&11	&10	&	&70	&30	&31	&29	&	&91	&49	&48	&50\\
+%50	&12	&13	&11	&	&71	&-	&-	&-	&	&92	&50	&49	&51\\
+%51	&13	&14	&12	&	&72	&32	&33	&31	&	&93	&51	&50	&52\\
+%52	&14	&15	&13	&	&73	&33	&32	&34	&	&94	&52	&51	&53\\
+%53	&15	&14	&16	&	&74	&34	&35	&33	&	&95	&53	&52	&54\\
+%54	&16	&15	&17	&	&75	&35	&34	&36	&	&96	&53	&54	&52\\
+%55	&16	&17	&15	&	&76	&35	&36	&37	&	&97	&54	&55	&53\\
+%56	&17	&18	&16	&	&77	&36	&37	&35	&	&98	&55	&54	&53\\
+%57	&18	&17	&19	&	&78	&37	&38	&36	&	&99	&55	&54	&53\\
+%58	&18	&19	&20	&	&79	&38	&37	&39	&	&	&	&	&\\
+%
+%
+% \hline\hline
+%\end{tabular}
+%\ec
+%%% place \tablecomments and \tablerefs below \end{center| and \end{center}:
+%%% you may leave the table-width parameter to editors or set to your Vactual size
+%\tablecomments{0.95\textwidth}{The ESID1, ESID2 and ESID3 are bin ID of the first three closest eigen spectra in \cite{mcgurk2010principal} respectively. }
+%\end{table}
+
+
+\subsection{Remaining problems}
 
 The result shows that our constructed template spectra can be used in the stellar classification in LAMOST survey.
 However, there are still some problems needing to solve.
@@ -847,7 +894,7 @@ We notice that most of our template spectra are main sequence stars.
 %some spectra  need to be labeled manually or picked out by other methods.
 In order to construct the template library which contains as many typs of spectra as possible,
 such as  K-type giants, DC and DZ white dwarfs \citep{si2013search},
-we need to add these rare spectra into our template library.    
+we need to add these rare spectra into our template library.
 \item
 At present, we use  three libraries to label our template spectra.
 However, how to label them better is still a remaining problem.
@@ -869,7 +916,7 @@ the weighted average spectra are constructed as the template spectra in the grou
 Afterwards, each template spectrum  is labeled with a MK type by comparing with three libraris and visual inspection,
 and some low-quality spectra are excluded afetr visual inspection .
 Meanwhile, some unlabeled or wrongly labeled spectra are relabeled  or abandoned.
-Finally, the new stellat classification templates library LAMOST spectra analysis pipeline consists of 164 spectra and 65 different MK classes.
+Finally, the new stellat classification templates library LAMOST spectra analysis pipeline consists of 164 spectra and 59 different MK classes.
 The new templates library has been used for new version of LAMOST Spectra Analysis Pipeline and is published on the website \footnote{\url{http://sciwiki.lamost.org/lamost_sctl/v1}}.
 
 
